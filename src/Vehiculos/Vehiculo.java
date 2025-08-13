@@ -16,15 +16,6 @@ public class Vehiculo {
     private TipoVehiculoEnum tipo;
     private EstadoVehiculoEnum estado;
 
-    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo, EstadoVehiculoEnum estado) {
-        this.placa = placa;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.anio = anio;
-        this.tipo = tipo;
-        this.estado = estado;
-    }
-
     public String getPlaca() {
         return placa;
     }
@@ -49,26 +40,6 @@ public class Vehiculo {
         return estado;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
-
-    public void setTipo(TipoVehiculoEnum tipo) {
-        this.tipo = tipo;
-    }
-
     public void setEstado(EstadoVehiculoEnum estado) {
         this.estado = estado;
     }
@@ -77,4 +48,6 @@ public class Vehiculo {
     public String toString() {
         return "Vehiculo{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", tipo=" + tipo + ", estado=" + estado + '}';
     }
+    
+    
 }

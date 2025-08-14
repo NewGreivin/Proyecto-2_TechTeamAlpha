@@ -9,8 +9,8 @@ package Interfaces;
  * @author Marisol
  */
 public interface IGestionDatos <T>{
-    public void agregar(T t);
+    public boolean agregar(T t);
     public T buscar(Object t);
-    public void actualizar(T t);
-    public void eliminar(T t);
+    public boolean actualizar(T t);
+    public boolean eliminar(T t);
 }

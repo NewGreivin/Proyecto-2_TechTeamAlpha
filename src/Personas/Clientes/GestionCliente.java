@@ -11,7 +11,7 @@ public class GestionCliente implements IGestionDatos<Cliente> {
     private ArrayList<Cliente> clientes = new ArrayList<>();
     
     @Override
-    public void agregar(Cliente t) {
+    public boolean agregar(Cliente t) {
         if (buscar(t.getCedula()) != null) {
             return false;
         }
@@ -46,7 +46,7 @@ public class GestionCliente implements IGestionDatos<Cliente> {
     }
 
     @Override
-    public void actualizar(Cliente t) {
+    public boolean actualizar(Cliente t) {
         Cliente existe = buscar(t.getCedula());
         if (existe == null) {
             return false;
@@ -59,7 +59,7 @@ public class GestionCliente implements IGestionDatos<Cliente> {
     }
 
     @Override
-    public void eliminar(Cliente t) {
+    public boolean eliminar(Cliente t) {
          return clientes.remove(t);
 }
     

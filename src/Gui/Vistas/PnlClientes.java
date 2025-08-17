@@ -38,7 +38,7 @@ public class PnlClientes extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(889, 623));
+        setPreferredSize(new java.awt.Dimension(794, 526));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 

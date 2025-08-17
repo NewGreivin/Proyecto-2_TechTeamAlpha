@@ -6,7 +6,7 @@
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[889, 623]"/>
+      <Dimension value="[794, 526]"/>
     </Property>
     <Property name="requestFocusEnabled" type="boolean" value="false"/>
     <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>

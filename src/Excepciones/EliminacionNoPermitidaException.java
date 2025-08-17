@@ -6,7 +6,7 @@ package Excepciones;
 
 /**
  *
- * @author Usuario
+ * @author Genesis
  */
 public class EliminacionNoPermitidaException extends Exception {
     public EliminacionNoPermitidaException(String mensaje) {

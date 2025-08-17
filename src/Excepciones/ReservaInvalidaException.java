@@ -6,10 +6,10 @@ package Excepciones;
 
 /**
  *
- * @author geneiss
+ * @author Geneis
  */
-public class ClienteNoEncontradoException extends Exception {
-    public ClienteNoEncontradoException(String mensaje) {
+public class ReservaInvalidaException extends Exception {
+    public ReservaInvalidaException(String mensaje) {
         super(mensaje);
     }
 }

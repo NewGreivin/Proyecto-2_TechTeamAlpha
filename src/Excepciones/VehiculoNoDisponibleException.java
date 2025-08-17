@@ -6,8 +6,10 @@ package Excepciones;
 
 /**
  *
- * @author Usuario
+ * @author Genesis
  */
-public class VehiculoNoDisponibleException {
-    
+public class VehiculoNoDisponibleException extends Exception {
+    public VehiculoNoDisponibleException(String mensaje) {
+        super(mensaje);
+    }
 }

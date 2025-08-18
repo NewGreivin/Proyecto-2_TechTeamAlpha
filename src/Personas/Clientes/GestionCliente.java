@@ -28,7 +28,7 @@ public class GestionCliente implements IGestionDatos<Cliente> {
             return false;
         }
         
-        if (t.getLicencia() == null || t.getLicencia().trim().isEmpty()) {
+        if (t.getLicencia() == null || t.getLicencia().getLicencia().isEmpty()) {
             return false;
         }
         clientes.add(t);

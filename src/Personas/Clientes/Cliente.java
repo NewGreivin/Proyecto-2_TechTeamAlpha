@@ -7,17 +7,17 @@ import Personas.Persona;
 import java.time.LocalDate;
 
 public class Cliente extends Persona {
-    private String licencia;
+    private LicenciasEnum licencia;
 
-    public String getLicencia() {
+    public LicenciasEnum getLicencia() {
         return licencia;
     }
 
-    public void setLicencia(String licencia) {
+    public void setLicencia(LicenciasEnum licencia) {
         this.licencia = licencia;
     }
 
-    public Cliente(String cedula, String nombre, LocalDate fechaNacimiento, String telefono, String correo, String licencia) {
+    public Cliente(String cedula, String nombre, LocalDate fechaNacimiento, String telefono, String correo, LicenciasEnum licencia) {
         super(cedula, nombre, fechaNacimiento, telefono, correo);
         this.licencia = licencia;
     }

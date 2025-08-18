@@ -19,6 +19,6 @@ public class UtilValidaciones {
 
 
     public static boolean validarTelefono(String telefono) {
-        return telefono != null && telefono.matches("^[0-9]{8}$");
+        return telefono != null && telefono.matches("^[2-8][0-9]{7}$");
     }
 }

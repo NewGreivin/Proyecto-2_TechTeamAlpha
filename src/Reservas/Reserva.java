@@ -3,12 +3,11 @@
  */
 package Reservas;
 
-import Interfaces.IComparador;
 import Personas.Clientes.Cliente;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 
-public class Reserva implements IComparador<Reserva>{
+public class Reserva implements Comparable<Reserva>{
     private Cliente cliente;
     private Vehiculo vehiculo;
     private LocalDate fechaInicio;

@@ -7,6 +7,7 @@ package Empleados;
 import Interfaces.IGestionDatos;
 import Utilidades.UtilValidaciones;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -14,7 +15,6 @@ import java.util.ArrayList;
  */
 public class GestionEmpleado implements IGestionDatos <Empleado>{
     private ArrayList<Empleado> Empleado = new ArrayList<>();
-
     @Override
     public boolean agregar(Empleado t) {
         if(buscar(t.getCedula())!=null){
@@ -66,5 +66,12 @@ public class GestionEmpleado implements IGestionDatos <Empleado>{
         return Empleado.remove(t);
     }
     
+    public HashSet<String> getPuesto(){
+        HashSet<String> set = new HashSet<>();
+        for (Empleado empleado : Empleado) {
+            set.add(empleado.getPuesto());
+        }
+        return set;
+    }
     
 }

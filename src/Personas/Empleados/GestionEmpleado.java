@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Empleados;
+package Personas.Empleados;
 
+import Personas.Empleados.Empleado;
 import Interfaces.IGestionDatos;
 import Utilidades.UtilValidaciones;
 import java.util.ArrayList;

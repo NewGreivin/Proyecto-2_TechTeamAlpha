@@ -259,7 +259,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 }
     
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        //mostrarPanel(new GUI.Vistas.PnlEmpleados());
+        mostrarPanel(new Gui.Vistas.PnlEmpleados());
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -271,15 +271,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bntClientesActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        //mostrarPanel(new GUI.Vistas.PnlReservas());
+        mostrarPanel(new Gui.Vistas.PnlReservas());
+        
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
-        //mostrarPanel(new GUI.Vistas.PnlVehiculos());
+        //mostrarPanel(new Gui.Vistas.PnlVehiculos());
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
-        //mostrarPanel(new GUI.Vistas.PnlAlquileres());
+        //mostrarPanel(new Gui.Vistas.PnlAlquileres());
     }//GEN-LAST:event_btnAlquileresActionPerformed
 
     public static void main(String args[]) {

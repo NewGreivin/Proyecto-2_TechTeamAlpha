@@ -26,7 +26,7 @@ public enum EstadoVehiculoEnum {
 
     @Override
     public String toString() {
-        return "EstadoVehiculoEnum{" + "ordinal=" + ordinal() + ", name=" + name() + ", descripcion=" + descripcion + '}';
+        return  descripcion;
     }
     
     

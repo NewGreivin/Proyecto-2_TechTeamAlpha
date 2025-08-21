@@ -25,7 +25,7 @@ public enum TipoVehiculoEnum {
 
     @Override
     public String toString() {
-        return "TipoVehiculoEnum{" + "ordinal=" + ordinal() + ", name=" + name() + ", descripcion=" + descripcion + '}';
+        return descripcion ;
     }
     
     

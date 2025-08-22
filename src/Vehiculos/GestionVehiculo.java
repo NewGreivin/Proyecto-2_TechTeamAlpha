@@ -4,6 +4,7 @@
  */
 package Vehiculos;
 
+import Excepciones.VehiculoNoDisponibleException;
 import Interfaces.IGestionDatos;
 import java.util.HashMap;
 
@@ -27,6 +28,13 @@ public class GestionVehiculo implements IGestionDatos<Vehiculo>{
         if(map.containsKey(t.getPlaca())) {
             return false;
         }
+        int anioActual = java.time.Year.now().getValue();
+        int antiguedad = anioActual - t.getAnio();
+        
+        if(antiguedad > 20){
+            return false;
+        }
+        
         map.put(t.getPlaca(), t);
         return true;
     }
@@ -42,16 +50,26 @@ public class GestionVehiculo implements IGestionDatos<Vehiculo>{
         if(!map.containsKey(t.getPlaca())) {
             return false;
         }
-        map.put(t.getPlaca(), t);
+        Vehiculo v = map.get(t.getPlaca());
+        v.setModelo(t.getModelo());
+        v.setTipo(t.getTipo());
+        v.setEstado(t.getEstado());
         return true;
     }
 
     @Override
-    public boolean eliminar(Vehiculo t) {
-        if(!map.containsKey(t.getPlaca()))
+    public boolean eliminar(Vehiculo t) throws VehiculoNoDisponibleException {
+        if(!map.containsKey(t.getPlaca())){
             return false;
-        map.remove(t.getPlaca(), t);
-            return true;
+        }
+        Vehiculo v = map.get(t.getPlaca());
+        if(EstadoVehiculoEnum.EN_ALQUILER.equals(v.getEstado())){
+            throw new VehiculoNoDisponibleException(
+                "No se puede eliminar el vehiculo: esta alquilado"
+            );
+        }
+        map.remove(t.getPlaca());
+        return true;
     }
     
 }

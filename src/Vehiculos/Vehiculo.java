@@ -40,6 +40,14 @@ public class Vehiculo {
         return estado;
     }
 
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setTipo(TipoVehiculoEnum tipo) {
+        this.tipo = tipo;
+    }
+
     public void setEstado(EstadoVehiculoEnum estado) {
         this.estado = estado;
     }

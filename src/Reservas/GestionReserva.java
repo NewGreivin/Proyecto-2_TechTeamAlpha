@@ -5,7 +5,7 @@ package Reservas;
 
 import Excepciones.EliminacionNoPermitidaException;
 import Excepciones.ReservaInvalidaException;
-import Interfaces.IGestionReservas;
+import Interfaces.IGestionDatos;
 import Personas.Clientes.Cliente;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.TreeSet;
 
-public class GestionReserva implements IGestionReservas<Reserva> {
+public class GestionReserva implements IGestionDatos<Reserva> {
     private Queue<Reserva> reservasPendientes;
     private TreeSet<Reserva> reservasOrdenadas;
 

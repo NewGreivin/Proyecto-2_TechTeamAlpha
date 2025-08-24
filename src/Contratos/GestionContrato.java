@@ -4,9 +4,8 @@
  */
 package Contratos;
 
-import Excepciones.EliminacionNoPermitidaException;
 import Interfaces.IGestionDatos;
-import Utilidades.UtilValidaciones;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -16,58 +15,44 @@ import java.util.HashMap;
 public class GestionContrato implements IGestionDatos<Contrato> {
     private HashMap<String, Contrato> contratos;
 
-    public GestionContrato() {
+    public GestionContrato(HashMap<String, Contrato> contratos) {
         this.contratos = new HashMap<>();
     }
 
     @Override
-    public boolean agregar(Contrato t) throws Exception {
-        for(Contrato c : contratos.values()){
-            if(c.getCliente().getCedula().equals(c.getCliente().getCedula())){
-                return false;
-            }
+    public boolean agregar(Contrato contrato) {
+        if(contratos.containsKey(contrato.getNumContrato())){
+            return false;
         }
-            if (UtilValidaciones.calcularEdad(t.getCliente().getFechaNacimiento()) < 18) {
-                return false;
-        }
-        
-            if (!UtilValidaciones.validarCorreo(t.getCliente().getCorreo())) {
-                return false;
-        }
-        
-            if (!UtilValidaciones.validarTelefono(t.getCliente().getTelefono())) {
-                return false;
-        }
-        
-        ///if(t.getCliente().getLicencia() == null || t.getCliente().)){
-            
-        //}
-        
-        contratos.put(t.getNumContrato(), t);
+        contratos.put(contrato.getNumContrato(), contrato);
         return true;
     }
 
     @Override
-    public Contrato buscar(Object t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Contrato buscar(Object t)  {
+        return contratos.get(String.valueOf(t));
     }
 
     @Override
-    public boolean actualizar(Contrato t) throws Exception {
-        if(!contratos.containsKey(t.getNumContrato())){
-            throw new Exception("El contrato no existe, no se puede actualizar");
+    public boolean actualizar(Contrato contrato){
+        if(contratos.containsKey(contrato.getNumContrato())){
+            contratos.put(contrato.getNumContrato(), contrato);
+            return true;
         }
-        contratos.put(t.getNumContrato(), t);
-        return true;
+        return false;
     }
 
     @Override
-    public boolean eliminar(Contrato t) throws EliminacionNoPermitidaException {
-        if(!contratos.containsKey(t.getNumContrato())){
-            throw new EliminacionNoPermitidaException("El contrato no existe, no se puede eliminar");
+    public boolean eliminar(Contrato t) throws Exception {
+        if(contratos.containsKey(String.valueOf(t))){
+            contratos.remove(String.valueOf(t));
+            return true;
         }
-        contratos.remove(t.getNumContrato());
-        return true;
+        return false;
+    }
+    
+    public Collection<Contrato> listar(){
+        return contratos.values();
     }
     
     

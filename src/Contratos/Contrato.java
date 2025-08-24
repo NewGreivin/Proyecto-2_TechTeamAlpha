@@ -8,7 +8,7 @@ import Personas.Clientes.Cliente;
 import Vehiculos.EstadoVehiculoEnum;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
 
 /**
  *
@@ -29,12 +29,17 @@ public class Contrato {
         this.vehiculo = vehiculo;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        long dias = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
-        
-        this.monto = tarifaDiaria * dias;
+        this.monto = calcularMonto(tarifaDiaria);
         this.estado = EstadoContratoEnum.ACTIVO;
-        
-        this.vehiculo.setEstado(EstadoVehiculoEnum.EN_ALQUILER);
+    }
+    
+    private double calcularMonto(double tarifaDiaria){
+        Period p = Period.between(fechaInicio, fechaFin);
+        int dias = p.getDays()+(p.getMonths()*30)+ (p.getYears()*365);
+        if(dias <= 0){
+            dias = 1;
+        }
+        return tarifaDiaria * dias;
     }
 
     public String getNumContrato() {
@@ -49,6 +54,14 @@ public class Contrato {
         return vehiculo;
     }
 
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
     public double getMonto() {
         return monto;
     }
@@ -56,6 +69,10 @@ public class Contrato {
     public EstadoContratoEnum getEstado() {
         return estado;
     }
+
+    
+
+   
     
     public void finalizar(){
         if(estado == EstadoContratoEnum.ACTIVO){

@@ -276,7 +276,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
-        //mostrarPanel(new Gui.Vistas.PnlVehiculos());
+        mostrarPanel(new Gui.Vistas.PnlVehiculos());
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed

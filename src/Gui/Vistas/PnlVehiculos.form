@@ -122,6 +122,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< Updated upstream
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -170,6 +171,31 @@
                                       </Group>
                                       <Component id="txtCorreo" max="32767" attributes="0"/>
                                       <Component id="txtTelefono" max="32767" attributes="0"/>
+=======
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Component id="txtTelefono" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblFechaNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblLicencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtLicencias" pref="317" max="32767" attributes="0"/>
+                                      <Component id="txtLicencias2" max="32767" attributes="0"/>
+                                      <Component id="txtLicencias1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtCedula1" max="32767" attributes="0"/>
+                                      <Component id="txtTelefono1" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
                                   </Group>
                               </Group>
                           </Group>
@@ -180,6 +206,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< Updated upstream
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -198,23 +225,52 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="lblInfoNacimiento" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+=======
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+<<<<<<< Updated upstream
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="lblInfoTelefono" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtLicencias1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCedula1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCedula" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTelefono1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtLicencias2" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblLicencia" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtLicencias" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+<<<<<<< Updated upstream
                           <EmptySpace pref="61" max="32767" attributes="0"/>
+=======
+                          <EmptySpace pref="86" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -225,6 +281,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
                     </Property>
+<<<<<<< Updated upstream
                     <Property name="text" type="java.lang.String" value="Placa:"/>
                   </Properties>
                 </Component>
@@ -233,6 +290,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
+=======
+                    <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
+>>>>>>> Stashed changes
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblNombre">
@@ -243,6 +303,7 @@
                     <Property name="text" type="java.lang.String" value="Marca:"/>
                   </Properties>
                 </Component>
+<<<<<<< Updated upstream
                 <Component class="javax.swing.JTextField" name="txtNombre">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -250,11 +311,14 @@
                     </Property>
                   </Properties>
                 </Component>
+=======
+>>>>>>> Stashed changes
                 <Component class="javax.swing.JLabel" name="lblFechaNacimiento">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
                     </Property>
+<<<<<<< Updated upstream
                     <Property name="text" type="java.lang.String" value="Fecha de :"/>
                   </Properties>
                 </Component>
@@ -271,6 +335,9 @@
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                     </Property>
+=======
+                    <Property name="text" type="java.lang.String" value="Modelo:"/>
+>>>>>>> Stashed changes
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTelefono">
@@ -278,6 +345,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
                     </Property>
+<<<<<<< Updated upstream
                     <Property name="text" type="java.lang.String" value="Telefono:"/>
                   </Properties>
                 </Component>
@@ -287,6 +355,9 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Requiere formato: 8 numeros"/>
+=======
+                    <Property name="text" type="java.lang.String" value="Placa:"/>
+>>>>>>> Stashed changes
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="txtLicencias">
@@ -307,6 +378,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
                     </Property>
+<<<<<<< Updated upstream
                     <Property name="text" type="java.lang.String" value="Correo: "/>
                   </Properties>
                 </Component>
@@ -315,6 +387,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
+=======
+                    <Property name="text" type="java.lang.String" value="Tipo del Vehiculo"/>
+>>>>>>> Stashed changes
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblLicencia">
@@ -322,13 +397,61 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
                     </Property>
+<<<<<<< Updated upstream
                     <Property name="text" type="java.lang.String" value="Licencia de conducir:"/>
+=======
+                    <Property name="text" type="java.lang.String" value="Estado del Vehiculo:"/>
+>>>>>>> Stashed changes
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="txtTelefono">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+<<<<<<< Updated upstream
                       <Format format="########" subtype="-1" type="5"/>
+=======
+                      <Format format="UUU###" subtype="-1" type="5"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="txtLicencias1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtCedula1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="txtLicencias2">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="txtTelefono1">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="####" subtype="-1" type="5"/>
+>>>>>>> Stashed changes
                     </Property>
                   </Properties>
                 </Component>
@@ -466,7 +589,11 @@
           <Font name="Arial" size="36" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+<<<<<<< Updated upstream
         <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Clientes"/>
+=======
+        <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Vehiculo"/>
+>>>>>>> Stashed changes
       </Properties>
     </Component>
   </SubComponents>

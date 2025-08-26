@@ -17,6 +17,7 @@ public class PnlVehiculos extends javax.swing.JPanel {
         pnlContenedor = new javax.swing.JPanel();
         pnlDatos = new javax.swing.JPanel();
         lblCedula = new javax.swing.JLabel();
+<<<<<<< Updated upstream
         txtCedula = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -30,6 +31,19 @@ public class PnlVehiculos extends javax.swing.JPanel {
         txtCorreo = new javax.swing.JTextField();
         lblLicencia = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JFormattedTextField();
+=======
+        lblNombre = new javax.swing.JLabel();
+        lblFechaNacimiento = new javax.swing.JLabel();
+        lblTelefono = new javax.swing.JLabel();
+        txtLicencias = new javax.swing.JComboBox<>();
+        lblCorreo = new javax.swing.JLabel();
+        lblLicencia = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JFormattedTextField();
+        txtLicencias1 = new javax.swing.JComboBox<>();
+        txtCedula1 = new javax.swing.JTextField();
+        txtLicencias2 = new javax.swing.JComboBox<>();
+        txtTelefono1 = new javax.swing.JFormattedTextField();
+>>>>>>> Stashed changes
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -47,13 +61,18 @@ public class PnlVehiculos extends javax.swing.JPanel {
         pnlContenedor.setBackground(new java.awt.Color(204, 204, 204));
 
         lblCedula.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+<<<<<<< Updated upstream
         lblCedula.setText("Placa:");
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+=======
+        lblCedula.setText("Año:");
+>>>>>>> Stashed changes
 
         lblNombre.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblNombre.setText("Marca:");
 
+<<<<<<< Updated upstream
         txtNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -69,10 +88,18 @@ public class PnlVehiculos extends javax.swing.JPanel {
 
         lblInfoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoTelefono.setText("Requiere formato: 8 numeros");
+=======
+        lblFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblFechaNacimiento.setText("Modelo:");
+
+        lblTelefono.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblTelefono.setText("Placa:");
+>>>>>>> Stashed changes
 
         txtLicencias.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblCorreo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+<<<<<<< Updated upstream
         lblCorreo.setText("Correo: ");
 
         txtCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -82,6 +109,27 @@ public class PnlVehiculos extends javax.swing.JPanel {
 
         try {
             txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+=======
+        lblCorreo.setText("Tipo del Vehiculo");
+
+        lblLicencia.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblLicencia.setText("Estado del Vehiculo:");
+
+        try {
+            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtLicencias1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txtCedula1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txtLicencias2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        try {
+            txtTelefono1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+>>>>>>> Stashed changes
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -94,6 +142,7 @@ public class PnlVehiculos extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosLayout.createSequentialGroup()
+<<<<<<< Updated upstream
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCedula)
                             .addComponent(lblNombre))
@@ -128,11 +177,31 @@ public class PnlVehiculos extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtCorreo)
                             .addComponent(txtTelefono))))
+=======
+                        .addComponent(lblTelefono)
+                        .addGap(158, 158, 158)
+                        .addComponent(txtTelefono))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFechaNacimiento)
+                            .addComponent(lblNombre)
+                            .addComponent(lblCedula)
+                            .addComponent(lblCorreo)
+                            .addComponent(lblLicencia))
+                        .addGap(17, 17, 17)
+                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLicencias, 0, 317, Short.MAX_VALUE)
+                            .addComponent(txtLicencias2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtLicencias1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCedula1)
+                            .addComponent(txtTelefono1))))
+>>>>>>> Stashed changes
                 .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(15, 15, 15)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
@@ -157,11 +226,37 @@ public class PnlVehiculos extends javax.swing.JPanel {
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addContainerGap()
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefono)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(txtLicencias1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFechaNacimiento)
+                    .addComponent(txtCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCedula)
+                    .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCorreo)
+                    .addComponent(txtLicencias2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> Stashed changes
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLicencia)
                     .addComponent(txtLicencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< Updated upstream
                 .addContainerGap(61, Short.MAX_VALUE))
+=======
+                .addContainerGap(86, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
 
         javax.swing.GroupLayout pnlContenedorLayout = new javax.swing.GroupLayout(pnlContenedor);
@@ -293,7 +388,11 @@ public class PnlVehiculos extends javax.swing.JPanel {
         lblTitulo.setBackground(new java.awt.Color(51, 51, 51));
         lblTitulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+<<<<<<< Updated upstream
         lblTitulo.setText("Gestión de Clientes");
+=======
+        lblTitulo.setText("Gestión de Vehiculo");
+>>>>>>> Stashed changes
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -348,8 +447,11 @@ public class PnlVehiculos extends javax.swing.JPanel {
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFechaNacimiento;
+<<<<<<< Updated upstream
     private javax.swing.JLabel lblInfoNacimiento;
     private javax.swing.JLabel lblInfoTelefono;
+=======
+>>>>>>> Stashed changes
     private javax.swing.JLabel lblLicencia;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
@@ -358,11 +460,20 @@ public class PnlVehiculos extends javax.swing.JPanel {
     private javax.swing.JPanel pnlContenedor;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlPrincipal;
+<<<<<<< Updated upstream
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JFormattedTextField txtFechaNacimiento;
     private javax.swing.JComboBox<String> txtLicencias;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JFormattedTextField txtTelefono;
+=======
+    private javax.swing.JTextField txtCedula1;
+    private javax.swing.JComboBox<String> txtLicencias;
+    private javax.swing.JComboBox<String> txtLicencias1;
+    private javax.swing.JComboBox<String> txtLicencias2;
+    private javax.swing.JFormattedTextField txtTelefono;
+    private javax.swing.JFormattedTextField txtTelefono1;
+>>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }

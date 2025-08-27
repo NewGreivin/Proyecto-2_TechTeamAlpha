@@ -3,12 +3,123 @@
  */
 package GUI.Vistas;
 
-public class PnlClientes extends javax.swing.JPanel {
+import Gui.Busquedas.dlgBuscarCliente;
+import Personas.Clientes.Cliente;
+import Personas.Clientes.GestionCliente;
+import Personas.Clientes.LicenciasEnum;
+import Utilidades.UtilDate;
+import Utilidades.UtilGui;
+import java.time.LocalDate;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
+public class PnlClientes extends javax.swing.JPanel {
+    private GestionCliente list;
+    private Cliente cliente;
+    
     public PnlClientes() {
         initComponents();
+        showTipo_Licencia();
     }
+    
+        private void showTipo_Licencia(){
+            DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+            for (LicenciasEnum licencia:LicenciasEnum.values()) {
+                model.addElement(licencia);
+            }
+            txtLicencia.setModel(model);
+        }
+    
+        private void clear(){
+            txtCedula.setText("");
+            txtNombre.setText("");
+            txtFechaNacimiento.setText("");
+            txtTelefono.setText("");
+            txtCorreo.setText("");
+            txtLicencia.setSelectedIndex(-1);
+        }
+        
+        private boolean validateRequire(){
+            return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtLicencia);
+        }
+        
+        private void save(){
+            if(!validateRequire()){
+                UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+                return;
+            }
+            String id=txtCedula.getText();
+            String name=txtNombre.getText();
+            LocalDate date=UtilDate.toLocalDate(txtFechaNacimiento.getText());
+            String telefono = txtTelefono.getText();
+            String correo = txtCorreo.getText();
+            LicenciasEnum licencia=(LicenciasEnum)txtLicencia.getSelectedItem();
 
+            cliente=new Cliente(id, name, date, telefono, correo, licencia);
+
+            if(!list.agregar(cliente)){
+                JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+                return;
+            }
+
+            UtilGui.showMessage(this, "Registro agregado "+ cliente.getNombre(),"Agregado");
+            clear();
+
+        }
+        
+        private void update(){
+            if(!validateRequire()){
+                UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+                return;
+            }
+            
+            String newtelefono = txtTelefono.getText();
+            cliente.setTelefono(newtelefono);
+            
+            String newcorreo = txtCorreo.getText();
+            cliente.setCorreo(newcorreo);
+            
+            LicenciasEnum licencia = (LicenciasEnum)txtLicencia.getSelectedItem();
+            cliente.setLicencia(licencia); 
+        }
+        
+        private void delete(){
+            if(cliente==null){
+                UtilGui.showErrorMessage(this, "Debe especificar un animal", "Error");
+                return;
+            }
+            if(!list.eliminar(cliente)){
+                JOptionPane.showMessageDialog(this, "No se elimino el registro");
+                return;
+            }
+            clear();
+        }
+        
+        private void showData(){
+            if(cliente == null ) return;
+
+            txtCedula.setText(cliente.getCedula());
+            txtNombre.setText(cliente.getNombre());
+            txtFechaNacimiento.setText(UtilDate.toString(cliente.getFechaNacimiento()));
+            txtTelefono.setText(cliente.getTelefono());
+            txtCorreo.setText(cliente.getCorreo());
+            txtLicencia.setSelectedItem(cliente.getLicencia());
+        }
+        
+        private void search()  {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            dlgBuscarCliente frmSearch = new dlgBuscarCliente(parentFrame, true);
+            frmSearch.setList(list);
+            frmSearch.setVisible(true);
+            
+            cliente=frmSearch.getCliente();
+            if(cliente!=null){
+                showData();
+            }
+        }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,8 +138,8 @@ public class PnlClientes extends javax.swing.JPanel {
         txtCorreo = new javax.swing.JTextField();
         lblLicencia = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        txtFechaNacimiento1 = new javax.swing.JFormattedTextField();
+        txtLicencia = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
@@ -72,18 +183,16 @@ public class PnlClientes extends javax.swing.JPanel {
         lblLicencia.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblLicencia.setText("Licencia de conducir:");
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Requiere formato: dd/MM/yyyy");
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtLicencia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         try {
-            txtFechaNacimiento1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Requiere formato: 8 numeros");
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -114,7 +223,7 @@ public class PnlClientes extends javax.swing.JPanel {
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblLicencia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtLicencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCorreo)
@@ -126,7 +235,7 @@ public class PnlClientes extends javax.swing.JPanel {
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtCorreo)
-                            .addComponent(txtFechaNacimiento1))))
+                            .addComponent(txtTelefono))))
                 .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
@@ -149,7 +258,7 @@ public class PnlClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefono)
-                    .addComponent(txtFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,7 +268,7 @@ public class PnlClientes extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLicencia)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -316,23 +425,23 @@ public class PnlClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+        save();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+        update();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        delete();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        search();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        clear();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
@@ -342,7 +451,6 @@ public class PnlClientes extends javax.swing.JPanel {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblCedula;
@@ -360,7 +468,8 @@ public class PnlClientes extends javax.swing.JPanel {
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JFormattedTextField txtFechaNacimiento;
-    private javax.swing.JFormattedTextField txtFechaNacimiento1;
+    private javax.swing.JComboBox<String> txtLicencia;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

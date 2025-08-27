@@ -16,20 +16,18 @@ public class PnlVehiculos extends javax.swing.JPanel {
         pnlPrincipal = new javax.swing.JPanel();
         pnlContenedor = new javax.swing.JPanel();
         pnlDatos = new javax.swing.JPanel();
-        lblCedula = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        lblFechaNacimiento = new javax.swing.JLabel();
-        txtFechaNacimiento = new javax.swing.JFormattedTextField();
-        lblTelefono = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JFormattedTextField();
-        lblCorreo = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        lblPuesto = new javax.swing.JLabel();
-        txtPuesto = new javax.swing.JComboBox<>();
-        lblSalario = new javax.swing.JLabel();
-        txtSalario = new javax.swing.JFormattedTextField();
-        txtFechaNacimiento1 = new javax.swing.JFormattedTextField();
+        lblPlaca = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        txtMarca = new javax.swing.JTextField();
+        lblModelo = new javax.swing.JLabel();
+        lblAño = new javax.swing.JLabel();
+        txtAño = new javax.swing.JFormattedTextField();
+        lblEstadoVehiculo = new javax.swing.JLabel();
+        txtEstadoVehiculo = new javax.swing.JComboBox<>();
+        txtPlaca = new javax.swing.JFormattedTextField();
+        txtModelo = new javax.swing.JTextField();
+        lblTipoVehiculo = new javax.swing.JLabel();
+        txtTipoVehiculo = new javax.swing.JComboBox<>();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -43,119 +41,119 @@ public class PnlVehiculos extends javax.swing.JPanel {
 
         pnlContenedor.setBackground(new java.awt.Color(204, 204, 204));
 
-        lblCedula.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblCedula.setText("Placa:");
+        lblPlaca.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblPlaca.setText("Placa:");
 
-        lblNombre.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblNombre.setText("Marca:");
+        lblMarca.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblMarca.setText("Marca:");
 
-        txtNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtMarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lblFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblFechaNacimiento.setText("Modelo:");
+        lblModelo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblModelo.setText("Modelo:");
 
-        txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-
-        lblTelefono.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblTelefono.setText("Año:");
+        lblAño.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblAño.setText("Año:");
 
         try {
-            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            txtAño.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        lblCorreo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblCorreo.setText("Correo: ");
+        lblEstadoVehiculo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblEstadoVehiculo.setText("Estado de Vehiculo:");
 
-        txtCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        lblPuesto.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblPuesto.setText("Puesto:");
-
-        txtPuesto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-
-        lblSalario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblSalario.setText("Salario:");
-
-        txtSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        txtEstadoVehiculo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         try {
-            txtFechaNacimiento1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU###")));
+            txtPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        txtModelo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        lblTipoVehiculo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblTipoVehiculo.setText("Tipo de Vehiculo:");
+
+        txtTipoVehiculo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
         pnlDatosLayout.setHorizontalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCedula)
-                            .addComponent(lblNombre))
-                        .addGap(152, 152, 152)
-                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFechaNacimiento1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                            .addComponent(txtNombre))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addComponent(lblFechaNacimiento)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtFechaNacimiento))
-                    .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCorreo)
-                            .addComponent(lblTelefono)
-                            .addComponent(lblPuesto)
-                            .addComponent(lblSalario))
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(lblAño))
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(lblEstadoVehiculo))
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(lblTipoVehiculo)))
+                        .addGap(27, 27, 27)
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTipoVehiculo, javax.swing.GroupLayout.Alignment.LEADING, 0, 283, Short.MAX_VALUE)
+                            .addComponent(txtEstadoVehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtAño)))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSalario)
-                                    .addComponent(txtPuesto, 0, 303, Short.MAX_VALUE)
-                                    .addComponent(txtCorreo)))
+                                .addComponent(lblPlaca)
+                                .addGap(158, 158, 158)
+                                .addComponent(txtPlaca))
                             .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblMarca)
+                                .addGap(152, 152, 152)
+                                .addComponent(txtMarca))
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addComponent(lblModelo)
+                                .addGap(142, 142, 142)
+                                .addComponent(txtModelo)))))
                 .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedula)
-                    .addComponent(txtFechaNacimiento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPlaca)
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMarca)
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFechaNacimiento)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefono)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblModelo)
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
-                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAño)
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPuesto)
-                    .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblTipoVehiculo)
+                    .addComponent(txtTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSalario)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(lblEstadoVehiculo)
+                    .addComponent(txtEstadoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout pnlContenedorLayout = new javax.swing.GroupLayout(pnlContenedor);
@@ -164,7 +162,7 @@ public class PnlVehiculos extends javax.swing.JPanel {
             pnlContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContenedorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlContenedorLayout.setVerticalGroup(
@@ -306,7 +304,7 @@ public class PnlVehiculos extends javax.swing.JPanel {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,25 +335,23 @@ public class PnlVehiculos extends javax.swing.JPanel {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JLabel lblCedula;
-    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblAño;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblFechaNacimiento;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblPuesto;
-    private javax.swing.JLabel lblSalario;
-    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblEstadoVehiculo;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblModelo;
+    private javax.swing.JLabel lblPlaca;
+    private javax.swing.JLabel lblTipoVehiculo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlContenedor;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlPrincipal;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JFormattedTextField txtFechaNacimiento;
-    private javax.swing.JFormattedTextField txtFechaNacimiento1;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JComboBox<String> txtPuesto;
-    private javax.swing.JFormattedTextField txtSalario;
-    private javax.swing.JFormattedTextField txtTelefono;
+    private javax.swing.JFormattedTextField txtAño;
+    private javax.swing.JComboBox<String> txtEstadoVehiculo;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JFormattedTextField txtPlaca;
+    private javax.swing.JComboBox<String> txtTipoVehiculo;
     // End of variables declaration//GEN-END:variables
 }

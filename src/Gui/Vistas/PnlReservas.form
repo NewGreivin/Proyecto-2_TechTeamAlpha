@@ -123,34 +123,34 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblCedula" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="txtLicencias1" max="32767" attributes="0"/>
+                                  <Component id="txtCedulas" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPlaca" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="txtLicencias2" max="32767" attributes="0"/>
+                                  <Component id="txtPlacas" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFechaFinalizacion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                           <Component id="lblInfoNacimiento1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtTelefono" min="-2" pref="283" max="-2" attributes="0"/>
+                                      <Component id="txtFechaFinalizacion" min="-2" pref="283" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblFechaNacimiento" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFechaInicio" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                          <Component id="lblInfoNacimiento" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblInfoFecha" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtFechaNacimiento" min="-2" pref="283" max="-2" attributes="0"/>
+                                      <Component id="txtFechaInicio" min="-2" pref="283" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -158,7 +158,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnAgregar1" max="32767" attributes="0"/>
+                          <Component id="btnConfirmarReserva" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -169,29 +169,29 @@
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtLicencias1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCedulas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtLicencias2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPlacas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="lblInfoNacimiento" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblInfoFecha" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFechaFinalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaFinalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblInfoNacimiento1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="48" max="32767" attributes="0"/>
-                          <Component id="btnAgregar1" min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="btnConfirmarReserva" min="-2" pref="55" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -206,7 +206,7 @@
                     <Property name="text" type="java.lang.String" value="Cedula Cliente:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblNombre">
+                <Component class="javax.swing.JLabel" name="lblPlaca">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
@@ -214,7 +214,7 @@
                     <Property name="text" type="java.lang.String" value="Placa Vehiculo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblFechaNacimiento">
+                <Component class="javax.swing.JLabel" name="lblFechaInicio">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
@@ -222,7 +222,7 @@
                     <Property name="text" type="java.lang.String" value="Fecha de Inicio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblInfoNacimiento">
+                <Component class="javax.swing.JLabel" name="lblInfoFecha">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -230,14 +230,14 @@
                     <Property name="text" type="java.lang.String" value="Requiere formato: dd/MM/yyyy"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtFechaNacimiento">
+                <Component class="javax.swing.JFormattedTextField" name="txtFechaInicio">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblTelefono">
+                <Component class="javax.swing.JLabel" name="lblFechaFinalizacion">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="18" style="0"/>
@@ -245,14 +245,14 @@
                     <Property name="text" type="java.lang.String" value="Fecha de Finalizacion:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="txtTelefono">
+                <Component class="javax.swing.JFormattedTextField" name="txtFechaFinalizacion">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                       <Format format="########" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="txtLicencias1">
+                <Component class="javax.swing.JComboBox" name="txtCedulas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
@@ -265,7 +265,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="txtLicencias2">
+                <Component class="javax.swing.JComboBox" name="txtPlacas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
@@ -286,7 +286,7 @@
                     <Property name="text" type="java.lang.String" value="Requiere formato: dd/MM/yyyy"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnAgregar1">
+                <Component class="javax.swing.JButton" name="btnConfirmarReserva">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="18" style="1"/>
@@ -297,7 +297,7 @@
                     <Property name="text" type="java.lang.String" value="Confirmar reserva"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarReservaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

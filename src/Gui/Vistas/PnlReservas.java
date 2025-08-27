@@ -3,10 +3,18 @@
  */
 package Gui.Vistas;
 
+import Personas.Clientes.Cliente;
+import Reservas.GestionReserva;
+import Utilidades.UtilDate;
+import Vehiculos.Vehiculo;
+import java.time.LocalDate;
+
 public class PnlReservas extends javax.swing.JPanel{
-        
+    private GestionReserva gestor;
+    
     public PnlReservas() {
         initComponents();
+        gestor = new GestionReserva();
     }
     
     @SuppressWarnings("unchecked")
@@ -17,16 +25,16 @@ public class PnlReservas extends javax.swing.JPanel{
         pnlContenedor = new javax.swing.JPanel();
         pnlDatos = new javax.swing.JPanel();
         lblCedula = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
-        lblFechaNacimiento = new javax.swing.JLabel();
-        lblInfoNacimiento = new javax.swing.JLabel();
-        txtFechaNacimiento = new javax.swing.JFormattedTextField();
-        lblTelefono = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JFormattedTextField();
-        txtLicencias1 = new javax.swing.JComboBox<>();
-        txtLicencias2 = new javax.swing.JComboBox<>();
+        lblPlaca = new javax.swing.JLabel();
+        lblFechaInicio = new javax.swing.JLabel();
+        lblInfoFecha = new javax.swing.JLabel();
+        txtFechaInicio = new javax.swing.JFormattedTextField();
+        lblFechaFinalizacion = new javax.swing.JLabel();
+        txtFechaFinalizacion = new javax.swing.JFormattedTextField();
+        txtCedulas = new javax.swing.JComboBox<>();
+        txtPlacas = new javax.swing.JComboBox<>();
         lblInfoNacimiento1 = new javax.swing.JLabel();
-        btnAgregar1 = new javax.swing.JButton();
+        btnConfirmarReserva = new javax.swing.JButton();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -46,39 +54,39 @@ public class PnlReservas extends javax.swing.JPanel{
         lblCedula.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblCedula.setText("Cedula Cliente:");
 
-        lblNombre.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblNombre.setText("Placa Vehiculo:");
+        lblPlaca.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblPlaca.setText("Placa Vehiculo:");
 
-        lblFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblFechaNacimiento.setText("Fecha de Inicio:");
+        lblFechaInicio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblFechaInicio.setText("Fecha de Inicio:");
 
-        lblInfoNacimiento.setForeground(new java.awt.Color(0, 0, 0));
-        lblInfoNacimiento.setText("Requiere formato: dd/MM/yyyy");
+        lblInfoFecha.setForeground(new java.awt.Color(0, 0, 0));
+        lblInfoFecha.setText("Requiere formato: dd/MM/yyyy");
 
-        txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        lblTelefono.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        lblTelefono.setText("Fecha de Finalizacion:");
+        lblFechaFinalizacion.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblFechaFinalizacion.setText("Fecha de Finalizacion:");
 
         try {
-            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            txtFechaFinalizacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        txtLicencias1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCedulas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        txtLicencias2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPlacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblInfoNacimiento1.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoNacimiento1.setText("Requiere formato: dd/MM/yyyy");
 
-        btnAgregar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAgregar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar.png"))); // NOI18N
-        btnAgregar1.setText("Confirmar reserva");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirmarReserva.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnConfirmarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar.png"))); // NOI18N
+        btnConfirmarReserva.setText("Confirmar reserva");
+        btnConfirmarReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
+                btnConfirmarReservaActionPerformed(evt);
             }
         });
 
@@ -92,32 +100,32 @@ public class PnlReservas extends javax.swing.JPanel{
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblCedula)
                         .addGap(74, 74, 74)
-                        .addComponent(txtLicencias1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtCedulas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addComponent(lblNombre)
+                        .addComponent(lblPlaca)
                         .addGap(71, 71, 71)
-                        .addComponent(txtLicencias2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtPlacas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addComponent(lblTelefono)
+                        .addComponent(lblFechaFinalizacion)
                         .addGap(4, 4, 4)
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblInfoNacimiento1))
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFechaFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
-                        .addComponent(lblFechaNacimiento)
+                        .addComponent(lblFechaInicio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(lblInfoNacimiento))
-                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblInfoFecha))
+                            .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAgregar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmarReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
         pnlDatosLayout.setVerticalGroup(
@@ -126,25 +134,25 @@ public class PnlReservas extends javax.swing.JPanel{
                 .addGap(15, 15, 15)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtLicencias1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedulas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtLicencias2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPlaca)
+                    .addComponent(txtPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFechaNacimiento)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFechaInicio)
+                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
-                .addComponent(lblInfoNacimiento)
+                .addComponent(lblInfoFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefono)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFechaFinalizacion)
+                    .addComponent(txtFechaFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblInfoNacimiento1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(btnAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConfirmarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
@@ -299,7 +307,19 @@ public class PnlReservas extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        try {
+        Cliente c = obtenerClienteSeleccionado();
+        Vehiculo v = obtenerVehiculoSeleccionado();
+        LocalDate inicio = UtilDate.parse(txtFechaInicio.getText());
+        LocalDate fin = UtilDate.parse(txtFechaFinalizacion.getText());
 
+        Reserva r = new Reserva(c, v, inicio, fin);
+        if (gestor.agregar(r)) {
+            lblEstado.setText("Reserva agregada correctamente.");
+        }
+    } catch (Exception ex) {
+        lblEstado.setText("Error: " + ex.getMessage());
+    }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -318,33 +338,33 @@ public class PnlReservas extends javax.swing.JPanel{
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+    private void btnConfirmarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    }//GEN-LAST:event_btnConfirmarReservaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnConfirmarReserva;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblFechaNacimiento;
-    private javax.swing.JLabel lblInfoNacimiento;
+    private javax.swing.JLabel lblFechaFinalizacion;
+    private javax.swing.JLabel lblFechaInicio;
+    private javax.swing.JLabel lblInfoFecha;
     private javax.swing.JLabel lblInfoNacimiento1;
-    private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlContenedor;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlPrincipal;
-    private javax.swing.JFormattedTextField txtFechaNacimiento;
-    private javax.swing.JComboBox<String> txtLicencias1;
-    private javax.swing.JComboBox<String> txtLicencias2;
-    private javax.swing.JFormattedTextField txtTelefono;
+    private javax.swing.JComboBox<String> txtCedulas;
+    private javax.swing.JFormattedTextField txtFechaFinalizacion;
+    private javax.swing.JFormattedTextField txtFechaInicio;
+    private javax.swing.JComboBox<String> txtPlacas;
     // End of variables declaration//GEN-END:variables
 }

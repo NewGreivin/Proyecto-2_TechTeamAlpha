@@ -4,6 +4,7 @@
  */
 package Gui.Vistas;
 
+import Utilidades.UtilGui;
 import Vehiculos.GestionVehiculo;
 import Vehiculos.Vehiculo;
 import java.util.HashMap;
@@ -84,17 +85,14 @@ public class dlgBuscarVehiculo extends javax.swing.JDialog  {
 
         tblVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "PLACA", "MARCA", "MODELO", "ANIO", "TIPO", "ESTADO"
+                "PLACA", "MARCA", "MODELO", "AÑO", "TIPO", "ESTADO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -166,8 +164,8 @@ public class dlgBuscarVehiculo extends javax.swing.JDialog  {
             UtilGui.showErrorMessage(this, "Debe seleccionar un vehiculo", "Error");
             return;
         }
-        String id=String.valueOf(tblVehiculos.getValueAt(row,0));
-        vehiculo=list.buscar();
+        String placa=String.valueOf(tblVehiculos.getValueAt(row,0));
+        vehiculo=list.buscar(placa);
         setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed

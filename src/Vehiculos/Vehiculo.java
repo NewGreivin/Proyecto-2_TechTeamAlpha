@@ -52,13 +52,13 @@ public class Vehiculo {
         this.estado = estado;
     }
 
-    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo, EstadoVehiculoEnum estado) {
+    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
         this.tipo = tipo;
-        this.estado = estado;
+        this.estado = estado.DISPONIBLE;
     }
 
     @Override

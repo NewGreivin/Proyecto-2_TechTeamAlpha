@@ -1,7 +1,7 @@
 /**
  * @author Greivin
  */
-package GUI;
+package Gui;
 
 import javax.swing.JPanel;
 
@@ -267,7 +267,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void bntClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntClientesActionPerformed
-        mostrarPanel(new GUI.Vistas.PnlClientes());
+        mostrarPanel(new Gui.Vistas.PnlCliente());
     }//GEN-LAST:event_bntClientesActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
@@ -280,7 +280,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
-        //mostrarPanel(new Gui.Vistas.PnlAlquileres());
+        //mostrarPanel(new Gui.Vistas.PnlAlquileres());  
     }//GEN-LAST:event_btnAlquileresActionPerformed
 
     public static void main(String args[]) {

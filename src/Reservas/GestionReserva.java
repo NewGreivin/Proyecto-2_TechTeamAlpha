@@ -21,6 +21,14 @@ public class GestionReserva implements IGestionDatos<Reserva> {
         this.reservasPendientes = new LinkedList<>();
         this.reservasOrdenadas = new TreeSet<>();
     }
+
+    public Queue<Reserva> getReservasPendientes() {
+        return reservasPendientes;
+    }
+
+    public TreeSet<Reserva> getReservasOrdenadas() {
+        return reservasOrdenadas;
+    }
     
     private void validarReserva (Cliente cliente, Vehiculo vehiculo, LocalDate inicio, LocalDate fin) throws ReservaInvalidaException {
         if (cliente == null) throw new ReservaInvalidaException("Cliente no registrado.");

@@ -52,6 +52,15 @@ public class Vehiculo {
         this.estado = estado;
     }
 
+    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo, EstadoVehiculoEnum estado) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+        this.tipo = tipo;
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return "Vehiculo{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", tipo=" + tipo + ", estado=" + estado + '}';

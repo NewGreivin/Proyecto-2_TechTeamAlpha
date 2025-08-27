@@ -1,9 +1,15 @@
 /**
- * @author Greivin
+ * @author Marisol
  */
 package Gui.Vistas;
 
-public class PnlVehiculos extends javax.swing.JPanel {
+import Interfaces.IGui;
+import Vehiculos.GestionVehiculo;
+import Vehiculos.Vehiculo;
+
+public class PnlVehiculos extends javax.swing.JPanel implements IGui {
+    private GestionVehiculo list;
+    private Vehiculo vehiculo;
 
     public PnlVehiculos() {
         initComponents();
@@ -354,4 +360,39 @@ public class PnlVehiculos extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField txtPlaca;
     private javax.swing.JComboBox<String> txtTipoVehiculo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void save() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void search() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean validateRequiere() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void showdata() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

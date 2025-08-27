@@ -3,18 +3,27 @@
  */
 package Gui.Vistas;
 
+import Excepciones.ReservaInvalidaException;
 import Personas.Clientes.Cliente;
 import Reservas.GestionReserva;
+import Personas.Clientes.GestionCliente;
+import Reservas.Reserva;
 import Utilidades.UtilDate;
+import Utilidades.UtilGui;
 import Vehiculos.Vehiculo;
 import java.time.LocalDate;
+import Interfaces.IGui;
+import Vehiculos.GestionVehiculo;
 
-public class PnlReservas extends javax.swing.JPanel{
-    private GestionReserva gestor;
+public class PnlReservas extends javax.swing.JPanel implements IGui {
+    private GestionReserva list;
+    private Reserva reserva;
+    private GestionCliente cliente;
+    private GestionVehiculo vehiculo;
     
     public PnlReservas() {
         initComponents();
-        gestor = new GestionReserva();
+        list = new GestionReserva();
     }
     
     @SuppressWarnings("unchecked")
@@ -30,10 +39,10 @@ public class PnlReservas extends javax.swing.JPanel{
         lblInfoFecha = new javax.swing.JLabel();
         txtFechaInicio = new javax.swing.JFormattedTextField();
         lblFechaFinalizacion = new javax.swing.JLabel();
-        txtFechaFinalizacion = new javax.swing.JFormattedTextField();
-        txtCedulas = new javax.swing.JComboBox<>();
-        txtPlacas = new javax.swing.JComboBox<>();
-        lblInfoNacimiento1 = new javax.swing.JLabel();
+        txtFechaFin = new javax.swing.JFormattedTextField();
+        txtCedula = new javax.swing.JComboBox<>();
+        txtPlaca = new javax.swing.JComboBox<>();
+        lblInfoFecha1 = new javax.swing.JLabel();
         btnConfirmarReserva = new javax.swing.JButton();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
@@ -69,17 +78,17 @@ public class PnlReservas extends javax.swing.JPanel{
         lblFechaFinalizacion.setText("Fecha de Finalizacion:");
 
         try {
-            txtFechaFinalizacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+            txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        txtCedulas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        txtPlacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPlaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lblInfoNacimiento1.setForeground(new java.awt.Color(0, 0, 0));
-        lblInfoNacimiento1.setText("Requiere formato: dd/MM/yyyy");
+        lblInfoFecha1.setForeground(new java.awt.Color(0, 0, 0));
+        lblInfoFecha1.setText("Requiere formato: dd/MM/yyyy");
 
         btnConfirmarReserva.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnConfirmarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar.png"))); // NOI18N
@@ -100,19 +109,19 @@ public class PnlReservas extends javax.swing.JPanel{
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblCedula)
                         .addGap(74, 74, 74)
-                        .addComponent(txtCedulas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtCedula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblPlaca)
                         .addGap(71, 71, 71)
-                        .addComponent(txtPlacas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtPlaca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblFechaFinalizacion)
                         .addGap(4, 4, 4)
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlDatosLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(lblInfoNacimiento1))
-                            .addComponent(txtFechaFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblInfoFecha1))
+                            .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblFechaInicio)
@@ -134,11 +143,11 @@ public class PnlReservas extends javax.swing.JPanel{
                 .addGap(15, 15, 15)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtCedulas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlaca)
-                    .addComponent(txtPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaInicio)
@@ -148,9 +157,9 @@ public class PnlReservas extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaFinalizacion)
-                    .addComponent(txtFechaFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblInfoNacimiento1)
+                .addComponent(lblInfoFecha1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnConfirmarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -307,35 +316,23 @@ public class PnlReservas extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        try {
-        Cliente c = obtenerClienteSeleccionado();
-        Vehiculo v = obtenerVehiculoSeleccionado();
-        LocalDate inicio = UtilDate.parse(txtFechaInicio.getText());
-        LocalDate fin = UtilDate.parse(txtFechaFinalizacion.getText());
-
-        Reserva r = new Reserva(c, v, inicio, fin);
-        if (gestor.agregar(r)) {
-            lblEstado.setText("Reserva agregada correctamente.");
-        }
-    } catch (Exception ex) {
-        lblEstado.setText("Error: " + ex.getMessage());
-    }
+        save();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        
+        update();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        delete();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+        search();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
+        clear();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnConfirmarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarReservaActionPerformed
@@ -355,16 +352,78 @@ public class PnlReservas extends javax.swing.JPanel{
     private javax.swing.JLabel lblFechaFinalizacion;
     private javax.swing.JLabel lblFechaInicio;
     private javax.swing.JLabel lblInfoFecha;
-    private javax.swing.JLabel lblInfoNacimiento1;
+    private javax.swing.JLabel lblInfoFecha1;
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlContenedor;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlPrincipal;
-    private javax.swing.JComboBox<String> txtCedulas;
-    private javax.swing.JFormattedTextField txtFechaFinalizacion;
+    private javax.swing.JComboBox<String> txtCedula;
+    private javax.swing.JFormattedTextField txtFechaFin;
     private javax.swing.JFormattedTextField txtFechaInicio;
-    private javax.swing.JComboBox<String> txtPlacas;
+    private javax.swing.JComboBox<String> txtPlaca;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void save() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
+            return;
+        }
+        try {
+        Cliente clienteId = (Cliente) txtCedula .getSelectedItem();
+        Cliente c = cliente.buscar(clienteId);
+        Vehiculo vehiculoId = (Vehiculo) txtPlaca .getSelectedItem();
+        Vehiculo v = vehiculo.buscar(vehiculoId);
+        LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
+        LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
+
+        Reserva r = new Reserva(c, v, inicio, fin);
+        if (list.agregar(r)) {
+            lblEstado.setText("Reserva agregada correctamente.");
+        }
+    } catch (ReservaInvalidaException ex) {
+        UtilGui.showErrorMessage(this, ex.getMessage(), "Error");
+        lblEstado.setText("Error: " + ex.getMessage());
+    }
+    }
+
+    @Override
+    public void clear() {
+        txtCedula.setSelectedIndex(-1);
+        txtPlaca.setSelectedIndex(-1);
+        txtFechaInicio.setText("");
+        txtFechaFin.setText("");
+    }
+
+    @Override
+    public void delete() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
+            return;
+        }
+        
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void search() {
+
+    }
+
+    @Override
+    public boolean validateRequiere() {
+        return UtilGui.validateRequiere(txtCedula, txtPlaca, txtFechaInicio, txtFechaFin);
+    }
+
+    @Override
+    public void showdata() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

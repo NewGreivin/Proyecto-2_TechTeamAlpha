@@ -4,7 +4,6 @@
  */
 package Personas.Empleados;
 
-import Personas.Empleados.Empleado;
 import Interfaces.IGestionDatos;
 import Utilidades.UtilValidaciones;
 import java.util.ArrayList;
@@ -26,15 +25,15 @@ public class GestionEmpleado implements IGestionDatos <Empleado>{
             return false;
         }
         
-        if(UtilValidaciones.validarTelefono(t.getTelefono())){
+        if(!UtilValidaciones.validarTelefono(t.getTelefono())){
             return false;
         }
         
-        if(UtilValidaciones.validarCorreo(t.getCorreo())){
+        if(!UtilValidaciones.validarCorreo(t.getCorreo())){
             return false;
         }
         
-        if(Empleado.add(t));
+        Empleado.add(t);
         return true;
     }
 

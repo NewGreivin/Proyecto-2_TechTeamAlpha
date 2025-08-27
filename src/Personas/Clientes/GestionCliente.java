@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 public class GestionCliente implements IGestionDatos<Cliente> {
     private ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
     
     @Override
     public boolean agregar(Cliente t) {

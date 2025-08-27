@@ -7,6 +7,7 @@ package Gui.Busquedas;
 import Personas.Clientes.Cliente;
 import Personas.Clientes.GestionCliente;
 import Utilidades.UtilDate;
+import Utilidades.UtilGui;
 import java.util.ArrayList;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -78,7 +79,7 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
         TBLlist = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         txtFiltrador = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -157,14 +158,19 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        btnAceptar.setText("jButton1");
+        btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
             }
         });
 
-        btnCancelar.setText("jButton2");
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -174,8 +180,8 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
                 .addGap(84, 84, 84)
                 .addComponent(btnAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(113, 113, 113))
+                .addComponent(jButton1)
+                .addGap(95, 95, 95))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +189,7 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
+                    .addComponent(jButton1))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -225,13 +231,25 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        int row =TBLlist.getSelectedRow();
+        if (row==-1){
+            UtilGui.showErrorMessage(this, "Debe seleccionar un animal", "Error");
+            return;
+        }
+        String id=String.valueOf(TBLlist.getValueAt(row,0));
+        cliente=list.buscar(id);
+        setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtFiltradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltradorActionPerformed
         rowFilter = RowFilter.regexFilter("(?i)" + txtFiltrador.getText());
         sorter.setRowFilter(rowFilter);
     }//GEN-LAST:event_txtFiltradorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +291,7 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBLlist;
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -3,9 +3,20 @@
  */
 package Gui.Vistas;
 
+import Excepciones.VehiculoNoDisponibleException;
+import Gui.Busquedas.dlgBuscarVehiculo;
 import Interfaces.IGui;
+import Utilidades.UtilGui;
+import Vehiculos.EstadoVehiculoEnum;
 import Vehiculos.GestionVehiculo;
+import Vehiculos.TipoVehiculoEnum;
 import Vehiculos.Vehiculo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class PnlVehiculos extends javax.swing.JPanel implements IGui {
     private GestionVehiculo list;
@@ -13,6 +24,25 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
 
     public PnlVehiculos() {
         initComponents();
+        showTipoVehiculo();
+        showEstadoVehiculo();
+        list = new GestionVehiculo();
+    }
+    
+    private void showTipoVehiculo(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for(TipoVehiculoEnum tipo : TipoVehiculoEnum.values()){
+            model.addElement(tipo);
+        }
+        txtTipoVehiculo.setModel(model);
+    }
+    
+    private void showEstadoVehiculo(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for(EstadoVehiculoEnum estado : EstadoVehiculoEnum.values()){
+            model.addElement(estado);
+        }
+        txtEstadoVehiculo.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -315,23 +345,23 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
+    save();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        
+    clear();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+    delete();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-
+    update();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+    search();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
@@ -363,36 +393,95 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
 
     @Override
     public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!validateRequiere()){
+            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+            return;
+        }
+        String placa = txtPlaca.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String anio = txtAño.getText();
+        TipoVehiculoEnum tipo =(TipoVehiculoEnum) txtTipoVehiculo.getSelectedItem();
+        EstadoVehiculoEnum estado =(EstadoVehiculoEnum) txtEstadoVehiculo.getSelectedItem();
+        
+        vehiculo = new Vehiculo(placa, marca, modelo, anio, tipo, estado);
+        
+        if(!list.agregar(vehiculo)){
+            JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+            return;
+        }
+        UtilGui.showErrorMessage(this, "Registro agregado " + vehiculo.getPlaca(), "Existosamente");
+        clear();
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtPlaca.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
+        txtAño.setText("");
+        txtTipoVehiculo.setSelectedIndex(-1);
+        txtEstadoVehiculo.setSelectedIndex(-1);
+        
     }
 
     @Override
     public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            if (!validateRequiere()){
+            UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+            return;
+        }
+        try {
+            Vehiculo vehiculoId = (Vehiculo) txy
+            
+        
+            if(!list.eliminar(vehiculo)){
+                JOptionPane.showMessageDialog(this, "No se eliminó el registro");
+                return;
+            }
+        } catch (VehiculoNoDisponibleException ex) {
+            UtilGui.showErrorMessage(this, ex.getMessage(), "Error");
+            lblEstado.setText("Vehiculo eliminado correctamente");
+        }
+        clear();
     }
 
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!validateRequiere()){
+            UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+        }
     }
 
     @Override
     public void search() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+        dlgBuscarVehiculo buscar = new dlgBuscarVehiculo(parentFrame, true);
+        buscar.setList(list);
+        buscar.setVisible(true);
+        
+        vehiculo=buscar.getVehiculo();
+        if(vehiculo!=null){
+            showdata();
+        }
     }
 
     @Override
     public boolean validateRequiere() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            return UtilGui.validateRequiere(txtPlaca, txtMarca, txtModelo, txtAño, txtTipoVehiculo, txtEstadoVehiculo);
     }
 
     @Override
     public void showdata() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(vehiculo == null)return;
+        
+        txtPlaca.setText(vehiculo.getPlaca());
+        txtMarca.setText(vehiculo.getMarca());
+        txtModelo.setText(vehiculo.getModelo());
+        String anios = Integer.toString(vehiculo.getAnio());
+        txtAño.setText(anios);
+        txtTipoVehiculo.setSelectedItem(vehiculo.getTipo());
+        txtEstadoVehiculo.setSelectedItem(vehiculo.getEstado());
     }
 }

@@ -444,7 +444,7 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
         }
         try{
         if (list.eliminar(cliente)) {
-            UtilGui.showMessage(this, "Se elimino el registro", "True");
+            UtilGui.showMessage(this, "Se elimino el registro", "Información");
             return;
         }
         }catch(EliminacionNoPermitidaException ex){

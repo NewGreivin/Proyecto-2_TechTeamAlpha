@@ -15,6 +15,16 @@ import java.util.HashSet;
  */
 public class GestionEmpleado implements IGestionDatos <Empleado>{
     private ArrayList<Empleado> Empleado = new ArrayList<>();
+    
+    public GestionEmpleado() {
+        Empleado = new ArrayList<>();
+    }
+
+    public ArrayList<Empleado> getEmpleado() {
+        return Empleado;
+    }
+    
+    
     @Override
     public boolean agregar(Empleado t) {
         if(buscar(t.getCedula())!=null){
@@ -74,8 +84,6 @@ public class GestionEmpleado implements IGestionDatos <Empleado>{
         return set;
     }
 
-    public ArrayList<Empleado> getEmpleados() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
 }

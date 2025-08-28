@@ -1,0 +1,136 @@
+[33m67c24b7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m Resubido
+[33m7465cee[m DlgBusquedaEmplleados
+[33m4e78aa7[m Merge branch 'dev' from origin/dev
+[33m852cdf7[m Guardado de emergencia
+[33m2c9d08f[m Fusion rama Actualizacion con Dev
+[33m48ad98e[m Actualizacion PnlCliente
+[33m0e9b68c[m Actualizacion de Menus DlgBuscar Cliente, Reserva, Vehiculos
+[33m1d9c4b0[m Fusion rama Actualizacion con Dev
+[33m80d9401[m Actualizacion PnlVehiculos
+[33m1be6f5c[m Actualización FrmPrincipal
+[33m84bc0cd[m Actualizacion PnlClientes y PnlReservas
+[33mb7cabc2[m Actualizacion FrmPrincipal
+[33m62090e9[m Se agregaron imagenes a botones de aceptar y cancelar
+[33m08416ad[m Se modifico un texto de dlgBuscarCliente
+[33md113856[m PnlEmpleados
+[33m741d3bb[m Actualizacion 1.0 pnlReservas
+[33me97fbc2[m Actualizacion panel Busquedas de reservas
+[33mb18c91e[m Cambio de texto solicitado por Greivin
+[33m4d2516d[m Se finaliza todo lo relacionado con vehiculo
+[33mfe95eba[m Se actualizo
+[33m71fc1f5[m Actualización de Gestor Cliente
+[33me4ffabe[m Se crean los metodos del Frame de Vehiculo
+[33m43438da[m Se crean los metodos del Frame de Vehiculo
+[33m7d4b95f[m Imagenes
+[33m76cdf83[m Se acutalizo el Panel
+[33m6562465[m Se actualizo el FrmPrincipal
+[33ma615b66[m Se actualizo la clase
+[33m5a79cb2[m Se creo el nuevo PnlClientes
+[33m6550d9e[m Eliminacion del PnlClientes
+[33m74b0db4[m Se arregla el JDialig de BuscarVehiculo
+[33mdec3521[m Se programo la clase de PnlClientes
+[33mf3577b4[m Actualización de clase PnlReservas
+[33mb2dfa8a[m Se adapta a las ultimas necesidades todo lo relacionado con vehiculo
+[33m0d72ed2[m Se realiza un guardado
+[33md6a53de[m Se programo la clase dlgBuscarCliente, con su metodo de filtrar, mostrar, aceptar y cancelar
+[33mde13652[m Creacion de interface IGui
+[33mc391d67[m Fusion de rama Gui/Reservas con dev
+[33m0e81bc3[m Creacion de DlgBuscarReservas
+[33mb5d2994[m Fusion de rama Clases/Cliente con DEV
+[33m1c9eeb2[m Actualización de Gestor Cliente
+[33md8a3e03[m Fusion de rama Clases/Reserva (Actualizacion Gestor Reserva)s
+[33mb92cdda[m Actualizacion de Clase Gestor Reservas
+[33m524ad01[m Actualizacion Nombre de interfaz Reservas
+[33m28db946[m Se creo el paquete de Gui.Busquedas
+[33ma4ea5e1[m Agrego los UtilDate
+[33m3d8c185[m Se actualizo la clase de gestion de empleado
+[33m9a1f868[m Se creo la clase UtilDate
+[33m0db1e57[m Fusion de rama Gui/Vehiculos con Dev
+[33m89fcdb3[m Actualización de clase pnlVehiculos
+[33m63d4728[m Fusion de rama Gui/Vehiculos con Dev
+[33ma9c23db[m Creación nuevamente de pnlVehiculos
+[33m043621d[m Fusion de rama Gui/Vehiculos con Dev
+[33m6ea3645[m Actualización de borrado de gui/Vehiculos
+[33m57c8f28[m Fusion de rama Gui/Vehiculos con Dev
+[33m737ae59[m Fusion de rama Gui/Principal con Dev
+[33m08191c6[m Actualizacion de PnlVehiculos
+[33m7060d57[m Actualizacion de frm prinipal
+[33m44497cd[m Se actualiza la clase GestionContrato
+[33m304d28c[m Se finaliza todo en el paquete Contratos
+[33m868d4c6[m Fusion remota sobre commit de marisol
+[33m21ba948[m Se crean metodos y atributos del paquete Contratos
+[33md24f8cc[m Fusion de rama Reserva con dev
+[33mf84c490[m Actualización de GestionReservas
+[33m1db9622[m Fusion de rama GestionReservas con dev
+[33mb8763f8[m Eliminacion de interfaz GestionReservas
+[33m1ad5b21[m Se terminan de crear las clases del paquete Contratos
+[33m87c64ce[m Se terminan de crear las clases del paquete Contratos
+[33md1f857b[m Se finalizan las clases del paquete vehiculos
+[33mbbbe91c[m Se actualizan todas las clases del paquete Vehiculo
+[33m0783e7c[m Se reubico la clase empleados
+[33ma252171[m Se modifico la clase GestionEmpleados
+[33ma3016a9[m Fusion de rama Gui/Vehiculos con dev
+[33m23bb026[m Cracion de interfa Vehiculos
+[33m409f816[m Fusion de rama Gui/Principal con dev
+[33m09678af[m Actaulizacion de programacion de interfaz principal
+[33m3a5662a[m Fusion de rama gui/reservas con dev
+[33m3414a32[m Creacion de Interfaz grafica Reservas
+[33m2da33b9[m Fusion de rama de Gui/Empleados con Dev
+[33mf6ebe7a[m Creacion de Interfaz grafica Empleados
+[33m4cddd3e[m Restablecer datos de repositorio
+[33m349851e[m Fusion de rama Reserva con dev
+[33m226999a[m Actualización Clase Reserva
+[33m490398f[m Fusion de rama Interfaces/ GestionReservas con dev
+[33m899ab9e[m Creacion de clase Interfaz GestionReservas
+[33mcefe005[m Fusion de rama comparador con dev
+[33me82839a[m borrado de Interfaz Comparador
+[33ma2bcfdf[m Fusion de rama Reserva con dev
+[33m4a49011[m Creación clase Gestión Reserva
+[33m5757a4f[m Creación clase Reserva
+[33m00efd25[m Se reubico empleados
+[33m3ca9375[m Fusion de Rama del comparador
+[33m439a5d6[m Se crea clase Interfaz Comparador
+[33mf4f5a9b[m Fusicion de Interfaz CLientes
+[33mde9e51d[m Actualización UtilValidaciones
+[33mf642040[m Fusicion de Interfaz CLientes
+[33m543670f[m Actualización Interfaz Grafica Clientes
+[33m3ea8b63[m Fusion de rama UtilGui con Dev
+[33mf2dc647[m Creacion de Clase UtilGui
+[33m78b9519[m Fusion de rama Cliente con Dev
+[33m5886c85[m Actualización Clase GestionCliente
+[33m79b9a42[m Actualizacion Clase Cliente
+[33m1d580f4[m Creacion de Enum Licencias
+[33m57577a2[m Excepciones
+[33ma13f18c[m En excepciones
+[33m8554eed[m En excepciones
+[33m4b50255[m En excepciones
+[33m450546c[m Se crea el paquete excepciones
+[33m9660aee[m Se creo excepciones ordenadas
+[33m8b4d92e[m Fusion de rama Interfaz Clientes con rama Dev, contiene la actualizacion del tamaño de la interfa grafica
+[33m2e21f19[m Actualizacion Interfaz Grafica Clientes
+[33mc3cdfbe[m Fusion de rama Interfaz Clientes con rama Dev
+[33m2d5be20[m Creacion de interfaz Grafica Clientes
+[33m39b2f9d[m Fusion de rama Interfaz Principal con rama Dev
+[33m2885736[m Creacion de interfaz Principal
+[33m760e185[m Se creo el paquete Empleados y la clase Empleado y la clase GestionEmpleado
+[33m31eb51d[m Fusion de rama que contiene GestionCliente con la rama rama Dev
+[33m2b0b430[m Actualizacion de clase GestionCliente
+[33m72ff0c0[m IGestionDatos se cambian por boolean
+[33m0f6ad72[m La IGestionDatos se cambian por boolean
+[33mb18e4a3[m Se crea la clase GestionVehiculo
+[33m42ddbd0[m Fusion de rama que contiene Validaciones necesarias para la clase cliente y futuras clases a la rama Dev
+[33m36d418d[m Creacion de Clase Validaciones
+[33m676c192[m Fusion de rama que contiene clase Cliente y lo necesario para gestionar los clientes con la rama Dev
+[33m9255893[m Creacion de clase GestionCliente
+[33m4faa833[m Creacion de clase cliente
+[33m0ada127[m Fusion de rama que contiene clase Persona a la rama Dev
+[33m1cd9371[m Creacion de clase Persona
+[33m60a7fbf[m Se crea la interface IGestionDatos
+[33m7ced39a[m Se suben las clases de vehiculo
+[33m53d6e78[m Se actualiza la clase Vehiculo
+[33me43324c[m Se crea el TipoVehiculoEnum
+[33mba29aab[m Se actualiza la clase Vehiculo
+[33m610535b[m Se crea el EstadoContratoEnum
+[33m95ea91e[m Se corrige error de paquetes
+[33maa6964c[m Se crea el EstadoVehiculoEnum
+[33m5abb6e8[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m Archivos iniciales y .Gitignore

@@ -27,13 +27,11 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
     private GestionCliente list;
     private Cliente cliente;
 
-    /**
-     * Creates new form PnlCliente
-     */
-    public PnlCliente() {
+
+    public PnlCliente(GestionCliente gestionCliente) {
+        list = gestionCliente;
         initComponents();
         showTipo_Licencia();
-        list = new GestionCliente();
     }
 
     private void showTipo_Licencia() {
@@ -78,6 +76,8 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
         btnActualizar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         pnlContenedor.setBackground(new java.awt.Color(204, 204, 204));
 

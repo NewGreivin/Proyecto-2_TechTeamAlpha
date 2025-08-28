@@ -16,10 +16,6 @@ public class Vehiculo {
     private TipoVehiculoEnum tipo;
     private EstadoVehiculoEnum estado;
 
-    public Vehiculo(String placa, String marca, String modelo, String anio, TipoVehiculoEnum tipo, EstadoVehiculoEnum estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public String getPlaca() {
         return placa;
     }
@@ -63,7 +59,7 @@ public class Vehiculo {
         return "Vehiculo{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anio=" + anio + ", tipo=" + tipo + ", estado=" + estado + '}';
     }
 
-    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo, EstadoVehiculoEnum estado) {
+    public Vehiculo(String placa, String marca, String modelo, int anio, TipoVehiculoEnum tipo) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;

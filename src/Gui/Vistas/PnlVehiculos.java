@@ -11,8 +11,6 @@ import Vehiculos.EstadoVehiculoEnum;
 import Vehiculos.GestionVehiculo;
 import Vehiculos.TipoVehiculoEnum;
 import Vehiculos.Vehiculo;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -432,9 +430,6 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
             return;
         }
         try {
-            Vehiculo vehiculoId = (Vehiculo) txy
-            
-        
             if(!list.eliminar(vehiculo)){
                 JOptionPane.showMessageDialog(this, "No se eliminó el registro");
                 return;
@@ -474,7 +469,9 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
 
     @Override
     public void showdata() {
-        if(vehiculo == null)return;
+        if(vehiculo == null){
+            return;
+        }
         
         txtPlaca.setText(vehiculo.getPlaca());
         txtMarca.setText(vehiculo.getMarca());

@@ -105,7 +105,6 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         lblFechaInicio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblFechaInicio.setText("Fecha de Inicio:");
 
-        lblInfoFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoFecha.setText("Requiere formato: dd/MM/yyyy");
 
         txtFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
@@ -114,13 +113,11 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         lblFechaFinalizacion.setText("Fecha de Finalizacion:");
 
         txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        txtFechaFin.setText("");
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         txtPlaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        lblInfoFecha1.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoFecha1.setText("Requiere formato: dd/MM/yyyy");
 
         btnConfirmarReserva.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -219,7 +216,7 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_Usuario.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_add (4).png"))); // NOI18N
         btnAgregar.setText("Agregar  ");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +225,7 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         });
 
         btnLimpiar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar_Usuario.png"))); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Page_clear.png"))); // NOI18N
         btnLimpiar.setText("Limpiar   ");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +234,7 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remover_Usuario.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_remove (4).png"))); // NOI18N
         btnEliminar.setText("Eliminar  ");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +243,7 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         });
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Editar_Usuario.png"))); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_edit (4).png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -257,7 +254,7 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         });
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar_Usuario.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_search (4).png"))); // NOI18N
         btnBuscar.setText("Buscar     ");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

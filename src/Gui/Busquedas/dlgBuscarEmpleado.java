@@ -203,6 +203,7 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
             };
             model.addRow(data);
         }
+        
     }     
 
         

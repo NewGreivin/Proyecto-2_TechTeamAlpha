@@ -47,18 +47,23 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
         TBLlist.setRowSorter(sorter);
     }
     
-    private void cargarTabla() {
+    private void loadTable() {
         model.setRowCount(0);
         Iterable<Empleado> lista = null;
             for (Empleado e : lista) {
             Object[] row = {
                 e.getCedula(),
                 e.getNombre(),
+                e.getFechaNacimiento(),
+                e.getTelefono(),
+                e.getCorreo(),
+                e.getPuesto(),
                 e.getPuesto(),
                 e.getSalario()
             };
             model.addRow(row);
-        }
+            }
+
     }
 
     /**
@@ -93,20 +98,20 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
 
         TBLlist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula", "Nombre", "F_Nacimiento", "Telefono", "Correo", "Licencia"
+                "Cedula", "Nombre", "F_Nacimiento", "Telefono", "Correo", "Puesto", "Salario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -118,6 +123,15 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(TBLlist);
+        if (TBLlist.getColumnModel().getColumnCount() > 0) {
+            TBLlist.getColumnModel().getColumn(0).setResizable(false);
+            TBLlist.getColumnModel().getColumn(1).setResizable(false);
+            TBLlist.getColumnModel().getColumn(2).setResizable(false);
+            TBLlist.getColumnModel().getColumn(3).setResizable(false);
+            TBLlist.getColumnModel().getColumn(4).setResizable(false);
+            TBLlist.getColumnModel().getColumn(5).setResizable(false);
+            TBLlist.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Aceptar.png"))); // NOI18N
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,23 +206,7 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    private void loadTable() {
-       ArrayList<Empleado> lista = list.getEmpleado();
-        model.setRowCount(0);
-
-        for (Empleado e : lista) {
-            Object[] data = {
-                e.getCedula(),
-                e.getNombre(),
-                UtilDate.toString(e.getFechaNacimiento()),
-                e.getTelefono(),
-                e.getCorreo(),
-                e.getPuesto()
-            };
-            model.addRow(data);
-        }
-        
-    }  
+    
     
     /**
      * @param args the command line arguments

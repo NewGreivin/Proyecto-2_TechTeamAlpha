@@ -3,14 +3,46 @@
  */
 package Gui;
 
+import Contratos.GestionContrato;
+import GUI.Vistas.PnlClientes;
+import Gui.Vistas.PnlContratos;
+import Gui.Vistas.PnlEmpleados;
+import Gui.Vistas.PnlReservas;
+import Gui.Vistas.PnlVehiculos;
+import Personas.Clientes.GestionCliente;
+import Personas.Empleados.GestionEmpleado;
+import Reservas.GestionReserva;
+import Vehiculos.GestionVehiculo;
 import javax.swing.JPanel;
 
 public class FrmPrincipal extends javax.swing.JFrame {
+    private GestionCliente gestionCliente;
+    private GestionVehiculo gestionVehiculo;
+    private GestionReserva gestionReserva;
+    private GestionEmpleado gestionEmpleado;
+    //private GestionContrato gestionContrato;
+
+    private PnlReservas pnlReservas;
+    private PnlClientes pnlClientes;
+    private PnlVehiculos pnlVehiculos;
+    //private PnlEmpleados pnlEmpleados;
+    //private PnlContratos pnlContratos;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPrincipal.class.getName());
 
     public FrmPrincipal() {
         initComponents();
+        gestionCliente = new GestionCliente();
+        gestionVehiculo = new GestionVehiculo();
+        gestionReserva = new GestionReserva();
+        gestionEmpleado = new GestionEmpleado();
+        //gestionContrato = new GestionContrato();
+
+        pnlClientes = new PnlClientes(gestionCliente);
+        pnlVehiculos = new PnlVehiculos(gestionVehiculo);
+        pnlReservas = new PnlReservas(gestionCliente, gestionVehiculo, gestionReserva);
+        //pnlEmpleados = new PnlEmpleados(gestionEmpleado);
+        //pnlContratos = new PnlContratos(gestionEmpleado, gestionCliente, gestionVehiculo, gestionContrato);
     }
 
     @SuppressWarnings("unchecked")
@@ -259,7 +291,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 }
     
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        mostrarPanel(new Gui.Vistas.PnlEmpleados());
+        //mostrarPanel(pnlEmpleados);
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -267,20 +299,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void bntClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntClientesActionPerformed
-        mostrarPanel(new Gui.Vistas.PnlCliente());
+        mostrarPanel(pnlClientes);
     }//GEN-LAST:event_bntClientesActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
-        mostrarPanel(new Gui.Vistas.PnlReservas());
+        mostrarPanel(pnlReservas);
         
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehiculosActionPerformed
-        mostrarPanel(new Gui.Vistas.PnlVehiculos());
+        mostrarPanel(pnlVehiculos);
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
-        //mostrarPanel(new Gui.Vistas.PnlAlquileres());  
+        //mostrarPanel(pnlContratos);  
     }//GEN-LAST:event_btnAlquileresActionPerformed
 
     public static void main(String args[]) {

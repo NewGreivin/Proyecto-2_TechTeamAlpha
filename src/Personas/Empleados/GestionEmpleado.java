@@ -73,5 +73,9 @@ public class GestionEmpleado implements IGestionDatos <Empleado>{
         }
         return set;
     }
+
+    public ArrayList<Empleado> getEmpleados() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

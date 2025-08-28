@@ -3,36 +3,31 @@
  */
 package Gui.Vistas;
 
+import Excepciones.EliminacionNoPermitidaException;
+import Gui.Busquedas.dlgBuscarEmpleado;
 import Interfaces.IGui;
 import Personas.Empleados.Empleado;
 import Personas.Empleados.GestionEmpleado;
+import Utilidades.UtilDate;
 import Utilidades.UtilGui;
-import java.awt.HeadlessException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 
 public class PnlEmpleados extends javax.swing.JPanel implements IGui {
-
- 
-    private final GestionEmpleado gestionEmpleado = new GestionEmpleado();
-    private final List<Empleado> listaLocal = new ArrayList<>();
-
     
-    private Empleado empleado;
     private GestionEmpleado list;
+    private Empleado empleado;
 
-    
     public PnlEmpleados() {
         initComponents();
-       
+        list = new GestionEmpleado();
+        
         
     }
-
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -346,11 +341,7 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
         save();
-        if (empleado != null) {
-            listaLocal.add(empleado);
-        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -359,177 +350,43 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if (empleado != null) {
-            listaLocal.remove(empleado);
+        if (empleado != null) {
+        boolean eliminado = list.eliminar(empleado); // lista maneja objeto directamente
+        if (eliminado) {
+            JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente", 
+                                          "Información", JOptionPane.INFORMATION_MESSAGE);
+            clear();
+            empleado = null;
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo eliminar el empleado", 
+                                          "Error", JOptionPane.ERROR_MESSAGE);
         }
-        delete();
+    } else {
+        JOptionPane.showMessageDialog(this, "Debe buscar un empleado primero", 
+                                      "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        update();
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        dlgBuscarEmpleado frmSearch = new dlgBuscarEmpleado(parentFrame, true);
+    
+
+        frmSearch.setList(list);
+    
+        frmSearch.setVisible(true);
+    
+        empleado = frmSearch.getEmpleado();
+    
+        if (empleado != null) {
+            showdata();
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if (!validateRequiere()) {
-            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
-            lblEstado.setText("Complete todos los campos obligatorios.");
-            return;
-        }
-
-        try {
-            String cedula = txtCedula.getText().trim();
-            Empleado existente = gestionEmpleado.buscar(cedula);
-
-            if (existente == null) {
-                UtilGui.showErrorMessage(this.pnlContenedor, "Empleado no encontrado", "Error");
-                lblEstado.setText("Empleado no encontrado para actualizar.");
-                return;
-            }
-
-            String telefono = txtTelefono.getText().trim();
-            String correo = txtCorreo.getText().trim();
-            String puesto = (String) txtPuesto.getSelectedItem();
-            Double salario = ((Number) txtSalario.getValue()).doubleValue();
-
-            if (telefono.isEmpty() || puesto == null || puesto.isEmpty()) {
-                lblEstado.setText("Complete todos los campos obligatorios.");
-                return;
-            }
-
-            if (!telefono.matches("\\d{8}")) {
-                lblEstado.setText("Teléfono debe tener 8 dígitos.");
-                return;
-            }
-
-            existente.setTelefono(telefono);
-            existente.setCorreo(correo);
-            existente.setPuesto(puesto);
-            existente.setSalario(salario);
-
-            lblEstado.setText("Empleado actualizado correctamente.");
-
-        } catch (Exception ex) {
-            lblEstado.setText("Error al actualizar: " + ex.getMessage());
-        }
         search();
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    
-    @Override
-    public void save() {
-        if (!validateRequiere()) return;
-
-        try {
-            String cedula = txtCedula.getText().trim();
-            String nombre = txtNombre.getText().trim();
-            String fechaStr = txtFechaNacimiento.getText().trim();
-            String telefono = txtTelefono.getText().trim();
-            String correo = txtCorreo.getText().trim();
-            String puesto = (String) txtPuesto.getSelectedItem();
-            double salario = Double.parseDouble(txtSalario.getText().trim());
-
-            LocalDate fechaNacimiento = LocalDate.parse(fechaStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-            if (gestionEmpleado.buscar(cedula) != null) {
-                JOptionPane.showMessageDialog(this, "Ya existe un empleado con esa cédula.");
-                return;
-            }
-
-            empleado = new Empleado(cedula, nombre, fechaNacimiento, telefono, correo, puesto, salario);
-            gestionEmpleado.agregar(empleado);
-
-            JOptionPane.showMessageDialog(this, "Empleado agregado correctamente.");
-            clear();
-            showdata();
-
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar empleado: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void clear() {
-        txtCedula.setText("");
-        txtNombre.setText("");
-        txtFechaNacimiento.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
-        txtSalario.setText("");
-        txtPuesto.setSelectedIndex(-1);
-        empleado = null;
-    }
-
-    @Override
-    public void delete() {
-        if (empleado == null) {
-            JOptionPane.showMessageDialog(this, "Debe buscar o seleccionar un empleado primero.");
-            return;
-        }
-        gestionEmpleado.eliminar(empleado);
-        JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
-        clear();
-        showdata();
-    }
-
-    @Override
-    public void update() {
-        if (empleado == null) {
-            JOptionPane.showMessageDialog(this, "Debe buscar un empleado primero.");
-            return;
-        }
-        if (!validateRequiere()) return;
-
-        try {
-            empleado.setTelefono(txtTelefono.getText().trim());
-            empleado.setCorreo(txtCorreo.getText().trim());
-            empleado.setPuesto((String) txtPuesto.getSelectedItem());
-            empleado.setSalario(Double.parseDouble(txtSalario.getText().trim()));
-
-            JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente.");
-            clear();
-            showdata();
-
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void search() {
-        String cedula = JOptionPane.showInputDialog(this, "Ingrese la cédula del empleado:");
-        if (cedula == null || cedula.trim().isEmpty()) return;
-
-        Empleado encontrado = gestionEmpleado.buscar(cedula.trim());
-        if (encontrado == null) {
-            JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
-            return;
-        }
-        empleado = encontrado;
-
-        txtCedula.setText(encontrado.getCedula());
-        txtNombre.setText(encontrado.getNombre());
-        txtFechaNacimiento.setText(encontrado.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        txtTelefono.setText(encontrado.getTelefono());
-        txtCorreo.setText(encontrado.getCorreo());
-        txtPuesto.setSelectedItem(encontrado.getPuesto());
-        txtSalario.setText(String.valueOf(encontrado.getSalario()));
-    }
-
-    @Override
-    public boolean validateRequiere() {
-        return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtSalario);
-    }
-
-    @Override
-    public void showdata() {
-    System.out.println("Lista de empleados locales:");
-    for (Empleado e : listaLocal) {
-        System.out.println(e);
-    }
-    }
-    
-    
-     
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -560,4 +417,108 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     private javax.swing.JFormattedTextField txtSalario;
     private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+    
+    
+   @Override
+public void save() {
+    if (!validateRequiere()) {
+        UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+        return;
+    }
+
+    String cedula = txtCedula.getText();
+    String nombre = txtNombre.getText();
+    LocalDate fecha = UtilDate.toLocalDate(txtFechaNacimiento.getText());
+    String telefono = txtTelefono.getText();
+    String correo = txtCorreo.getText();
+    String puesto = (String) txtPuesto.getSelectedItem();
+    
+    empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto);
+
+    
+
+    if (!list.agregar(empleado)) {
+        JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+        return;
+    }
+
+    UtilGui.showMessage(this, "Registro agregado " + empleado.getNombre(), "Agregado");
+    clear();
+}
+
+    @Override
+    public boolean validateRequiere() {
+        return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtPuesto);
+    }
+
+    @Override
+    public void clear() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtFechaNacimiento.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtPuesto.setSelectedItem(null);
+
+    }
+
+    @Override
+    public void delete() {
+        if (empleado == null) {
+            UtilGui.showErrorMessage(this, "Debe especificar un Empleado", "Error");
+            return;
+        }
+        if (empleado != null) {
+            boolean eliminado = list.eliminar(empleado);
+            if (eliminado) {
+                UtilGui.showMessage(this, "Se eliminó el registro", "Información");
+                clear();
+                empleado = null;
+            } else {
+                UtilGui.showErrorMessage(this, "No se pudo eliminar el empleado", "Error");
+            }
+        } else {
+            UtilGui.showErrorMessage(this, "Debe especificar un Empleado", "Error");
+        }
+    }
+
+    @Override
+    public void update() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+            return;
+        }
+
+    
+        empleado.setTelefono(txtTelefono.getText());
+        empleado.setCorreo(txtCorreo.getText());
+        empleado.setPuesto((String) txtPuesto.getSelectedItem()); 
+}
+
+    @Override
+    public void search() {
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        dlgBuscarEmpleado frmSearch = new dlgBuscarEmpleado(parentFrame, true);
+        frmSearch.setList(list);
+        frmSearch.setVisible(true);
+
+        empleado = frmSearch.getEmpleado();
+        if (empleado != null) {
+            showdata();
+        }
+    }
+
+    @Override
+    public void showdata() {
+        if (empleado == null) return;
+
+        txtCedula.setText(empleado.getCedula());
+        txtNombre.setText(empleado.getNombre());
+        txtFechaNacimiento.setText(UtilDate.toString(empleado.getFechaNacimiento()));
+        txtTelefono.setText(empleado.getTelefono());
+        txtCorreo.setText(empleado.getCorreo());
+        txtPuesto.setSelectedItem(empleado.getPuesto()); 
+    }
+
+
 }

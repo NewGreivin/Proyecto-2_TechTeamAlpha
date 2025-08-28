@@ -19,4 +19,8 @@ public class UtilDate {
     public static String toString(LocalDate date){
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
+    public static String localDateToString(LocalDate fechaNacimiento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

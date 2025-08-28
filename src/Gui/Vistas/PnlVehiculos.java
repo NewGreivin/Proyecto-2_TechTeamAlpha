@@ -19,11 +19,11 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
     private GestionVehiculo list;
     private Vehiculo vehiculo;
 
-    public PnlVehiculos() {
+    public PnlVehiculos(GestionVehiculo gestionVehiculo) {
+        this.list = gestionVehiculo;
         initComponents();
         showTipoVehiculo();
         showEstadoVehiculo();
-        list = new GestionVehiculo();
     }
     
     private void showTipoVehiculo(){

@@ -4,6 +4,7 @@
  */
 package Gui.Vistas;
 
+import Excepciones.EliminacionNoPermitidaException;
 import Gui.Busquedas.dlgBuscarCliente;
 import Interfaces.IGui;
 import Personas.Clientes.Cliente;
@@ -438,12 +439,17 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
     @Override
     public void delete() {
         if (cliente == null) {
-            UtilGui.showErrorMessage(this, "Debe especificar un animal", "Error");
+            UtilGui.showErrorMessage(this, "Debe especificar un Cliente", "Error");
             return;
         }
-        if (!list.eliminar(cliente)) {
-            JOptionPane.showMessageDialog(this, "No se elimino el registro");
+        try{
+        if (list.eliminar(cliente)) {
+            UtilGui.showMessage(this, "Se elimino el registro", "True");
             return;
+        }
+        }catch(EliminacionNoPermitidaException ex){
+            UtilGui.showErrorMessage(this, ex.getMessage(), "Error");
+            lblEstado.setText("Eliminación no permitida");
         }
         clear();
     }

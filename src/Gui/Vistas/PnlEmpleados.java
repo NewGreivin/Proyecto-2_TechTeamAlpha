@@ -350,37 +350,11 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (empleado != null) {
-        boolean eliminado = list.eliminar(empleado); // lista maneja objeto directamente
-        if (eliminado) {
-            JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente", 
-                                          "Información", JOptionPane.INFORMATION_MESSAGE);
-            clear();
-            empleado = null;
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo eliminar el empleado", 
-                                          "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Debe buscar un empleado primero", 
-                                      "Advertencia", JOptionPane.WARNING_MESSAGE);
-    }
+        delete();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        dlgBuscarEmpleado frmSearch = new dlgBuscarEmpleado(parentFrame, true);
-    
-
-        frmSearch.setList(list);
-    
-        frmSearch.setVisible(true);
-    
-        empleado = frmSearch.getEmpleado();
-    
-        if (empleado != null) {
-            showdata();
-        }
+        update();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -519,6 +493,8 @@ public void save() {
         txtTelefono.setText(empleado.getTelefono());
         txtCorreo.setText(empleado.getCorreo());
         txtPuesto.setSelectedItem(empleado.getPuesto()); 
+        txtSalario.setText(String.valueOf(empleado.getSalario()));
+
     }
 
 

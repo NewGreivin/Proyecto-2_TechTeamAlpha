@@ -1,12 +1,35 @@
 /**
- * @author Greivin
+ * @author Genesis
  */
 package Gui.Vistas;
 
-public class PnlEmpleados extends javax.swing.JPanel {
+import Interfaces.IGui;
+import Personas.Empleados.Empleado;
+import Personas.Empleados.GestionEmpleado;
+import Utilidades.UtilGui;
+import java.awt.HeadlessException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
+
+public class PnlEmpleados extends javax.swing.JPanel implements IGui {
+
+ 
+    private final GestionEmpleado gestionEmpleado = new GestionEmpleado();
+    private final List<Empleado> listaLocal = new ArrayList<>();
+
+    
+    private Empleado empleado;
+    private GestionEmpleado list;
+
+    
     public PnlEmpleados() {
         initComponents();
+       
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -58,7 +81,6 @@ public class PnlEmpleados extends javax.swing.JPanel {
         lblFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblFechaNacimiento.setText("Fecha de Nacimiento:");
 
-        lblInfoNacimiento.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoNacimiento.setText("Requiere formato: dd/MM/yyyy");
 
         txtFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
@@ -66,7 +88,6 @@ public class PnlEmpleados extends javax.swing.JPanel {
         lblTelefono.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblTelefono.setText("Telefono:");
 
-        lblInfoTelefono.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoTelefono.setText("Requiere formato: 8 numeros");
 
         try {
@@ -83,6 +104,7 @@ public class PnlEmpleados extends javax.swing.JPanel {
         lblPuesto.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblPuesto.setText("Puesto:");
 
+        txtPuesto.setEditable(true);
         txtPuesto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         lblSalario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -325,25 +347,190 @@ public class PnlEmpleados extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
+        save();
+        if (empleado != null) {
+            listaLocal.add(empleado);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        clear();  
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-
+         if (empleado != null) {
+            listaLocal.remove(empleado);
+        }
+        delete();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-
+        update();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+            lblEstado.setText("Complete todos los campos obligatorios.");
+            return;
+        }
 
+        try {
+            String cedula = txtCedula.getText().trim();
+            Empleado existente = gestionEmpleado.buscar(cedula);
+
+            if (existente == null) {
+                UtilGui.showErrorMessage(this.pnlContenedor, "Empleado no encontrado", "Error");
+                lblEstado.setText("Empleado no encontrado para actualizar.");
+                return;
+            }
+
+            String telefono = txtTelefono.getText().trim();
+            String correo = txtCorreo.getText().trim();
+            String puesto = (String) txtPuesto.getSelectedItem();
+            Double salario = ((Number) txtSalario.getValue()).doubleValue();
+
+            if (telefono.isEmpty() || puesto == null || puesto.isEmpty()) {
+                lblEstado.setText("Complete todos los campos obligatorios.");
+                return;
+            }
+
+            if (!telefono.matches("\\d{8}")) {
+                lblEstado.setText("Teléfono debe tener 8 dígitos.");
+                return;
+            }
+
+            existente.setTelefono(telefono);
+            existente.setCorreo(correo);
+            existente.setPuesto(puesto);
+            existente.setSalario(salario);
+
+            lblEstado.setText("Empleado actualizado correctamente.");
+
+        } catch (Exception ex) {
+            lblEstado.setText("Error al actualizar: " + ex.getMessage());
+        }
+        search();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    
+    @Override
+    public void save() {
+        if (!validateRequiere()) return;
 
+        try {
+            String cedula = txtCedula.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            String fechaStr = txtFechaNacimiento.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            String correo = txtCorreo.getText().trim();
+            String puesto = (String) txtPuesto.getSelectedItem();
+            double salario = Double.parseDouble(txtSalario.getText().trim());
+
+            LocalDate fechaNacimiento = LocalDate.parse(fechaStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+            if (gestionEmpleado.buscar(cedula) != null) {
+                JOptionPane.showMessageDialog(this, "Ya existe un empleado con esa cédula.");
+                return;
+            }
+
+            empleado = new Empleado(cedula, nombre, fechaNacimiento, telefono, correo, puesto, salario);
+            gestionEmpleado.agregar(empleado);
+
+            JOptionPane.showMessageDialog(this, "Empleado agregado correctamente.");
+            clear();
+            showdata();
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar empleado: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void clear() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtFechaNacimiento.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtSalario.setText("");
+        txtPuesto.setSelectedIndex(-1);
+        empleado = null;
+    }
+
+    @Override
+    public void delete() {
+        if (empleado == null) {
+            JOptionPane.showMessageDialog(this, "Debe buscar o seleccionar un empleado primero.");
+            return;
+        }
+        gestionEmpleado.eliminar(empleado);
+        JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
+        clear();
+        showdata();
+    }
+
+    @Override
+    public void update() {
+        if (empleado == null) {
+            JOptionPane.showMessageDialog(this, "Debe buscar un empleado primero.");
+            return;
+        }
+        if (!validateRequiere()) return;
+
+        try {
+            empleado.setTelefono(txtTelefono.getText().trim());
+            empleado.setCorreo(txtCorreo.getText().trim());
+            empleado.setPuesto((String) txtPuesto.getSelectedItem());
+            empleado.setSalario(Double.parseDouble(txtSalario.getText().trim()));
+
+            JOptionPane.showMessageDialog(this, "Empleado actualizado correctamente.");
+            clear();
+            showdata();
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void search() {
+        String cedula = JOptionPane.showInputDialog(this, "Ingrese la cédula del empleado:");
+        if (cedula == null || cedula.trim().isEmpty()) return;
+
+        Empleado encontrado = gestionEmpleado.buscar(cedula.trim());
+        if (encontrado == null) {
+            JOptionPane.showMessageDialog(this, "Empleado no encontrado.");
+            return;
+        }
+        empleado = encontrado;
+
+        txtCedula.setText(encontrado.getCedula());
+        txtNombre.setText(encontrado.getNombre());
+        txtFechaNacimiento.setText(encontrado.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        txtTelefono.setText(encontrado.getTelefono());
+        txtCorreo.setText(encontrado.getCorreo());
+        txtPuesto.setSelectedItem(encontrado.getPuesto());
+        txtSalario.setText(String.valueOf(encontrado.getSalario()));
+    }
+
+    @Override
+    public boolean validateRequiere() {
+        return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtSalario);
+    }
+
+    @Override
+    public void showdata() {
+    System.out.println("Lista de empleados locales:");
+    for (Empleado e : listaLocal) {
+        System.out.println(e);
+    }
+    }
+    
+    
+     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;

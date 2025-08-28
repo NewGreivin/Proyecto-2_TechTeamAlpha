@@ -13,7 +13,6 @@ import Vehiculos.TipoVehiculoEnum;
 import Vehiculos.Vehiculo;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class PnlVehiculos extends javax.swing.JPanel implements IGui {
@@ -62,6 +61,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         txtModelo = new javax.swing.JTextField();
         lblTipoVehiculo = new javax.swing.JLabel();
         txtTipoVehiculo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -113,43 +113,41 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
 
         txtTipoVehiculo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel2.setText("Antigüedad máxma: 20 años");
+
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
         pnlDatosLayout.setHorizontalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblAño))
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblEstadoVehiculo))
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblTipoVehiculo)))
+                            .addComponent(lblAño)
+                            .addComponent(lblEstadoVehiculo)
+                            .addComponent(lblTipoVehiculo))
                         .addGap(27, 27, 27)
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtTipoVehiculo, javax.swing.GroupLayout.Alignment.LEADING, 0, 283, Short.MAX_VALUE)
                             .addComponent(txtEstadoVehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtAño)))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addComponent(lblPlaca)
-                                .addGap(158, 158, 158)
-                                .addComponent(txtPlaca))
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addComponent(lblMarca)
-                                .addGap(152, 152, 152)
-                                .addComponent(txtMarca))
-                            .addGroup(pnlDatosLayout.createSequentialGroup()
-                                .addComponent(lblModelo)
-                                .addGap(142, 142, 142)
-                                .addComponent(txtModelo)))))
+                        .addComponent(lblPlaca)
+                        .addGap(158, 158, 158)
+                        .addComponent(txtPlaca))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addComponent(lblMarca)
+                        .addGap(152, 152, 152)
+                        .addComponent(txtMarca))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addComponent(lblModelo)
+                        .addGap(142, 142, 142)
+                        .addComponent(txtModelo)))
                 .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
@@ -173,11 +171,14 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
                     .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAño)
                     .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(25, 25, 25)
+                        .addComponent(lblAño))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addGap(1, 1, 1)
                         .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -369,6 +370,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAño;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblEstadoVehiculo;
@@ -398,17 +400,16 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         String placa = txtPlaca.getText();
         String marca = txtMarca.getText();
         String modelo = txtModelo.getText();
-        String anio = txtAño.getText();
+        int anio = Integer.parseInt(txtAño.getText());
         TipoVehiculoEnum tipo =(TipoVehiculoEnum) txtTipoVehiculo.getSelectedItem();
-        EstadoVehiculoEnum estado =(EstadoVehiculoEnum) txtEstadoVehiculo.getSelectedItem();
         
-        vehiculo = new Vehiculo(placa, marca, modelo, anio, tipo, estado);
+        vehiculo = new Vehiculo(placa, marca, modelo, anio, tipo);
         
         if(!list.agregar(vehiculo)){
-            JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+            UtilGui.showErrorMessage(this, "No se agrego el registro", "Error");
             return;
         }
-        UtilGui.showErrorMessage(this, "Registro agregado " + vehiculo.getPlaca(), "Existosamente");
+        UtilGui.showMessage(this, "Registro agregado " + vehiculo.getPlaca(), "Existosamente");
         clear();
     }
 
@@ -425,18 +426,18 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
 
     @Override
     public void delete() {
-            if (!validateRequiere()){
-            UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+            if (vehiculo == null){
+            UtilGui.showErrorMessage(this, "Debe especificar el vehiculo", "Error");
             return;
         }
         try {
-            if(!list.eliminar(vehiculo)){
-                JOptionPane.showMessageDialog(this, "No se eliminó el registro");
+            if(list.eliminar(vehiculo)){
+                UtilGui.showMessage(this, "Se elimino el registro", "Informacion");
                 return;
             }
         } catch (VehiculoNoDisponibleException ex) {
             UtilGui.showErrorMessage(this, ex.getMessage(), "Error");
-            lblEstado.setText("Vehiculo eliminado correctamente");
+            lblEstado.setText("Eliminacion no permitida");
         }
         clear();
     }
@@ -445,7 +446,19 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
     public void update() {
         if(!validateRequiere()){
             UtilGui.showErrorMessage(this, "Faltan datos", "Error");
-        }
+            return;
+        }  
+        String modelo = txtModelo.getText();
+        vehiculo.setModelo(modelo);
+        
+        TipoVehiculoEnum tipo = (TipoVehiculoEnum) txtTipoVehiculo.getSelectedItem();
+        vehiculo.setTipo(tipo);
+        
+        EstadoVehiculoEnum estado = (EstadoVehiculoEnum) txtEstadoVehiculo.getSelectedItem();
+        vehiculo.setEstado(estado);
+        
+        UtilGui.showMessage(this, "Se actualizo vehiculo con placa: "+ vehiculo.getPlaca(), "Exitoso");
+
     }
 
     @Override

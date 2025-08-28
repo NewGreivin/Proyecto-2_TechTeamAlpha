@@ -23,7 +23,7 @@ public class Contrato {
     private double monto;
     private EstadoContratoEnum estado;
 
-    public Contrato(String numContrato, Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio, LocalDate fechaFin, double monto, double tarifaDiaria) {
+    public Contrato(String numContrato, Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio, LocalDate fechaFin, double tarifaDiaria) {
         this.numContrato = numContrato;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
@@ -70,10 +70,6 @@ public class Contrato {
         return estado;
     }
 
-    
-
-   
-    
     public void finalizar(){
         if(estado == EstadoContratoEnum.ACTIVO){
             estado = EstadoContratoEnum.FINALIZADO;

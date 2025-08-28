@@ -3,8 +3,12 @@
  */
 package Gui.Vistas;
 
+import Contratos.Contrato;
+import Contratos.EstadoContratoEnum;
 import Contratos.GestionContrato;
 import Excepciones.ReservaInvalidaException;
+import Gui.Busquedas.dlgBuscarContrato;
+import Gui.Busquedas.dlgBuscarReserva;
 import Personas.Clientes.Cliente;
 import Reservas.Reserva;
 import Utilidades.UtilDate;
@@ -14,18 +18,53 @@ import java.time.LocalDate;
 import Interfaces.IGui;
 import Personas.Clientes.GestionCliente;
 import Vehiculos.GestionVehiculo;
+import Vehiculos.TipoVehiculoEnum;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class PnlContratos extends javax.swing.JPanel implements IGui {
     private GestionContrato list;
-    private Reserva contrato;
     private GestionCliente cliente;
     private GestionVehiculo vehiculo;
+    private Contrato contratoActual;
     
-    public PnlContratos() {
+    public PnlContratos(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo, GestionContrato gestionContrato) {
         initComponents();
-        list = new GestionContrato();
+        this.cliente = gestionCliente;
+        this.vehiculo = gestionVehiculo;
+        this.list = gestionContrato;
+        cargarCliente();
+        cargarVehiculos();
+        cargarEstadoContrato();
     }
-    
+        private void cargarEstadoContrato(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for(EstadoContratoEnum tipo : EstadoContratoEnum.values()){
+            model.addElement(tipo);
+        }
+        txtEstado.setModel(model);
+    }
+    private void cargarCliente() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel(); 
+        for (Cliente c: cliente.getClientes()) {
+            model.addElement(c.getCedula());
+        }
+        txtCedula.setModel(model);
+    }
+    private void cargarVehiculos() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel(); 
+        for (Vehiculo p: vehiculo.getMap().values()) {
+            model.addElement(p.getPlaca());
+        }
+        txtPlaca.setModel(model);
+    }
+    public void cargarCombos() {
+    txtCedula.removeAllItems();
+    txtPlaca.removeAllItems();
+    cargarCliente();
+    cargarVehiculos();
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,6 +87,8 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         lblMonto = new javax.swing.JLabel();
         txtEstado = new javax.swing.JComboBox<>();
         lblInfoFecha2 = new javax.swing.JLabel();
+        lblMonto1 = new javax.swing.JLabel();
+        lblMontoTotalResultado = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
@@ -81,11 +122,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         lblFechaFinalizacion.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblFechaFinalizacion.setText("Fecha de Finalizacion:");
 
-        try {
-            txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -106,6 +143,13 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
 
         lblInfoFecha2.setForeground(new java.awt.Color(0, 0, 0));
         lblInfoFecha2.setText("Requiere formato: 0.00");
+
+        lblMonto1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lblMonto1.setText("Monto Total:");
+
+        lblMontoTotalResultado.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblMontoTotalResultado.setForeground(new java.awt.Color(0, 0, 0));
+        lblMontoTotalResultado.setText("0.00");
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
@@ -151,13 +195,20 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
                         .addGap(71, 71, 71)
                         .addComponent(txtPlaca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosLayout.createSequentialGroup()
-                        .addComponent(lblEstadoContrato)
-                        .addGap(24, 24, 24)
-                        .addComponent(txtEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlDatosLayout.createSequentialGroup()
                         .addComponent(lblCedula)
                         .addGap(74, 74, 74)
-                        .addComponent(txtCedula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtCedula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlDatosLayout.createSequentialGroup()
+                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEstadoContrato)
+                            .addComponent(lblMonto1))
+                        .addGap(24, 24, 24)
+                        .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlDatosLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblMontoTotalResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         pnlDatosLayout.setVerticalGroup(
@@ -193,7 +244,11 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEstadoContrato))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMonto1)
+                    .addComponent(lblMontoTotalResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlContenedorLayout = new javax.swing.GroupLayout(pnlContenedor);
@@ -217,7 +272,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_Usuario.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_add (4).png"))); // NOI18N
         btnAgregar.setText("Agregar  ");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +281,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         });
 
         btnLimpiar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar_Usuario.png"))); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Page_clear.png"))); // NOI18N
         btnLimpiar.setText("Limpiar   ");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +290,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remover_Usuario.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_remove (4).png"))); // NOI18N
         btnEliminar.setText("Eliminar  ");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +299,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         });
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Editar_Usuario.png"))); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_edit (4).png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -255,7 +310,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         });
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar_Usuario.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_search (4).png"))); // NOI18N
         btnBuscar.setText("Buscar     ");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,7 +397,7 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -382,6 +437,8 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
     private javax.swing.JLabel lblInfoFecha1;
     private javax.swing.JLabel lblInfoFecha2;
     private javax.swing.JLabel lblMonto;
+    private javax.swing.JLabel lblMonto1;
+    private javax.swing.JLabel lblMontoTotalResultado;
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBotones;
@@ -399,9 +456,31 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
     @Override
     public void save() {
         if (!validateRequiere()) {
-            UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
+            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
             return;
         }
+
+        String cedulaSelect = (String) txtCedula.getSelectedItem();
+        Cliente c = cliente.buscar(cedulaSelect);
+        String placaSelect = (String) txtPlaca.getSelectedItem();
+        Vehiculo v = vehiculo.buscar(placaSelect);
+        LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
+        LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
+        double tarifaDiaria = Double.parseDouble(txtMonto.getText());
+        
+        String numContrato = "C-" + System.currentTimeMillis();
+
+        Contrato nuevo = new Contrato(numContrato, c, v, inicio, fin, tarifaDiaria);
+
+        if (list.agregar(nuevo)) {
+            lblEstado.setText("Contrato agregado correctamente.");
+            contratoActual = nuevo;
+
+            lblMontoTotalResultado.setText(String.valueOf(nuevo.getMonto()));
+        } else {
+            UtilGui.showErrorMessage(this, "Error al agregar contrato: ", "Error");
+        }
+          
     }
 
     @Override
@@ -410,6 +489,10 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         txtPlaca.setSelectedIndex(-1);
         txtFechaInicio.setText("");
         txtFechaFin.setText("");
+        txtMonto.setText("");
+        txtEstado.setSelectedIndex(-1);
+        lblMontoTotalResultado.setText("0.00");
+        contratoActual = null;
     }
 
     @Override
@@ -418,27 +501,62 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
             UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
             return;
         }
-        
+        if (list.eliminar(contratoActual)) {
+            lblEstado.setText("Contrato eliminado correctamente.");
+            clear();
+        } else {
+            UtilGui.showErrorMessage(this, "Error al eliminar contrato: " , "Error");
+            lblEstado.setText("No se pudo eliminar el contrato.");
+        }
+    
     }
 
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (contratoActual == null) {
+            UtilGui.showErrorMessage(this, "Contrato no encontrado", "Error al actualizar");
+            lblEstado.setText("Seleccione primero un contrato para actualizar.");
+            return;
+        }
+
+        contratoActual.finalizar();
+
+        if (list.actualizar(contratoActual)) {
+            lblEstado.setText("Contrato finalizado correctamente.");
+        } else {
+            lblEstado.setText("Error al finalizar contrato.");
+        }
     }
 
     @Override
     public void search() {
-        
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        dlgBuscarContrato frmBusqueda = new dlgBuscarContrato(parentFrame, true);
+        frmBusqueda.setList(list);
+        frmBusqueda.setVisible(true);
+
+        contratoActual = frmBusqueda.getContrato();
+        if (contratoActual != null) {
+            showdata();
+        }
     }
 
     @Override
     public boolean validateRequiere() {
-        return UtilGui.validateRequiere(txtCedula, txtPlaca, txtFechaInicio, txtFechaFin);
+        return UtilGui.validateRequiere(txtCedula, txtPlaca, txtFechaInicio, txtFechaFin, txtMonto);
     }
 
     @Override
     public void showdata() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
+    
+    public void cargarReservaEnContrato(Reserva reserva) {
+    if (reserva == null) return;
 
+    txtCedula.setSelectedItem(reserva.getCliente().getCedula());
+    txtPlaca.setSelectedItem(reserva.getVehiculo().getPlaca());
+    txtFechaInicio.setText(UtilDate.toString(reserva.getFechaInicio()));
+    txtFechaFin.setText(UtilDate.toString(reserva.getFechaFin()));
+    }
 }

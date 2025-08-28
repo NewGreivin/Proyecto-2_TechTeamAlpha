@@ -20,13 +20,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private GestionVehiculo gestionVehiculo;
     private GestionReserva gestionReserva;
     private GestionEmpleado gestionEmpleado;
-    //private GestionContrato gestionContrato;
+    private GestionContrato gestionContrato;
 
     private PnlReservas pnlReservas;
     private PnlCliente pnlClientes;
     private PnlVehiculos pnlVehiculos;
     private PnlEmpleados pnlEmpleados;
-    //private PnlContratos pnlContratos;
+    private PnlContratos pnlContratos;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPrincipal.class.getName());
 
@@ -36,13 +36,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gestionVehiculo = new GestionVehiculo();
         gestionReserva = new GestionReserva();
         gestionEmpleado = new GestionEmpleado();
-        //gestionContrato = new GestionContrato();
+        gestionContrato = new GestionContrato();
 
         pnlClientes = new PnlCliente(gestionCliente);
         pnlVehiculos = new PnlVehiculos(gestionVehiculo);
-        pnlReservas = new PnlReservas(gestionCliente, gestionVehiculo, gestionReserva);
+        pnlReservas = new PnlReservas(gestionCliente, gestionVehiculo, gestionReserva, gestionContrato);
         pnlEmpleados = new PnlEmpleados(gestionEmpleado);
-        //pnlContratos = new PnlContratos(gestionEmpleado, gestionCliente, gestionVehiculo, gestionContrato);
+        pnlContratos = new PnlContratos(gestionCliente, gestionVehiculo, gestionContrato);
+    }
+
+    public PnlContratos getPnlContratos() {
+        return pnlContratos;
     }
 
     @SuppressWarnings("unchecked")
@@ -313,7 +317,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVehiculosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
-        //mostrarPanel(pnlContratos);  
+        pnlContratos.cargarCombos();
+        mostrarPanel(pnlContratos);  
     }//GEN-LAST:event_btnAlquileresActionPerformed
 
     public static void main(String args[]) {

@@ -3,9 +3,12 @@
  */
 package Gui.Vistas;
 
+import Contratos.Contrato;
+import Contratos.GestionContrato;
 import Excepciones.EliminacionNoPermitidaException;
 import Excepciones.ReservaInvalidaException;
 import Gui.Busquedas.dlgBuscarReserva;
+import Gui.FrmPrincipal;
 import Personas.Clientes.Cliente;
 import Reservas.GestionReserva;
 import Personas.Clientes.GestionCliente;
@@ -25,12 +28,14 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
     private Reserva reserva;
     private GestionCliente cliente;
     private GestionVehiculo vehiculo;
+    private GestionContrato gContrato;
     
-    public PnlReservas(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo, GestionReserva gestionReserva) {
+    public PnlReservas(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo, GestionReserva gestionReserva, GestionContrato gestionContrato) {
         initComponents();
         this.cliente = gestionCliente;
         this.vehiculo = gestionVehiculo;
         this.list = gestionReserva;
+        this.gContrato = gestionContrato;
         cargarCliente();
         cargarVehiculos();
     }
@@ -509,4 +514,24 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         txtFechaFin.setText(UtilDate.toString(reserva.getFechaFin()));
     }
 
+    public void ConfirmarReserva() {
+    if (!validateRequiere()) {
+        UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
+        return;
+    }
+        String cedulaSelect = (String) txtCedula.getSelectedItem();
+        Cliente c = cliente.buscar(cedulaSelect);
+        String placaSelect = (String) txtPlaca.getSelectedItem();
+        Vehiculo v = vehiculo.buscar(placaSelect);
+        LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
+        LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
+
+        Reserva r = new Reserva(c, v, inicio, fin);
+            r.setConfirmada(true);
+            UtilGui.showMessage(this, "Reserva Confirmada", "Informacion");
+
+        // 🚩 Obtener referencia al frame principal
+        FrmPrincipal frame = (FrmPrincipal) SwingUtilities.getWindowAncestor(this);
+        frame.getPnlContratos().cargarReservaEnContrato(r);
+    } 
 }

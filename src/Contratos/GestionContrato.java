@@ -20,6 +20,11 @@ public class GestionContrato implements IGestionDatos<Contrato> {
         this.contratos = new HashMap<>();
     }
 
+    public HashMap<String, Contrato> getContratos() {
+        return contratos;
+    }
+
+    
     @Override
     public boolean agregar(Contrato contrato) {
         if(contratos.containsKey(contrato.getNumContrato())){
@@ -71,17 +76,18 @@ public class GestionContrato implements IGestionDatos<Contrato> {
     }
 
     @Override
-    public boolean eliminar(Contrato t) throws Exception {
-        if(contratos.containsKey(String.valueOf(t))){
-            contratos.remove(String.valueOf(t));
-            return true;
-        }
-        return false;
+    public boolean eliminar(Contrato t) {
+    if (t == null) return false;
+    String key = t.getNumContrato();
+    if (contratos.containsKey(key)) {
+        contratos.remove(key);
+        return true;
     }
+    return false;
+}
     
     public Collection<Contrato> listar(){
         return contratos.values();
     }
-    
     
 }

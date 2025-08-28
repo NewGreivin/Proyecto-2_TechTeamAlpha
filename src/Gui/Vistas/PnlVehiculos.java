@@ -212,7 +212,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_Usuario.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_Vehiculo.png"))); // NOI18N
         btnAgregar.setText("Agregar  ");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,7 +221,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         });
 
         btnLimpiar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar_Usuario.png"))); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar_Vehiculo.png"))); // NOI18N
         btnLimpiar.setText("Limpiar   ");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +230,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         });
 
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remover_Usuario.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Remover_Vehiculo.png"))); // NOI18N
         btnEliminar.setText("Eliminar  ");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +239,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         });
 
         btnActualizar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Editar_Usuario.png"))); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Editar_Vehiculo.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -250,7 +250,7 @@ public class PnlVehiculos extends javax.swing.JPanel implements IGui {
         });
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar_Usuario.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar_Vehiculo.png"))); // NOI18N
         btnBuscar.setText("Buscar     ");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

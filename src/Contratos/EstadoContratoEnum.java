@@ -25,7 +25,7 @@ public enum EstadoContratoEnum {
 
     @Override
     public String toString() {
-        return "EstadoContratoEnum{" + "ordinal=" + ordinal() + ", name=" + name() + ", descripcion=" + descripcion + '}';
+        return descripcion;
     }
     
 }

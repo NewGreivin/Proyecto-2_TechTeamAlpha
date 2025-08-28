@@ -3,12 +3,19 @@
  */
 package Personas.Clientes;
 
+import Excepciones.EliminacionNoPermitidaException;
 import Interfaces.IGestionDatos;
+import Reservas.GestionReserva;
+import Reservas.Reserva;
 import Utilidades.UtilValidaciones;
 import java.util.ArrayList;
 
 public class GestionCliente implements IGestionDatos<Cliente> {
-    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Cliente> clientes;
+
+    public GestionCliente() {
+        clientes = new ArrayList<>();
+    }
 
     public ArrayList<Cliente> getClientes() {
         return clientes;
@@ -63,8 +70,15 @@ public class GestionCliente implements IGestionDatos<Cliente> {
     }
 
     @Override
-    public boolean eliminar(Cliente t) {
-         return clientes.remove(t);
+    public boolean eliminar(Cliente t) throws EliminacionNoPermitidaException {
+    GestionReserva gestorReserva = new GestionReserva(); 
+    Reserva hayActiva = gestorReserva.buscar(t);
+
+    if (hayActiva != null) {
+        throw new EliminacionNoPermitidaException("No se puede eliminar el cliente, tiene reservas activas.");
+    }
+
+    return clientes.remove(t);
 }
     
 }

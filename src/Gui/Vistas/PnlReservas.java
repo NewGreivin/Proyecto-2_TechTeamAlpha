@@ -3,7 +3,9 @@
  */
 package Gui.Vistas;
 
+import Excepciones.EliminacionNoPermitidaException;
 import Excepciones.ReservaInvalidaException;
+import Gui.Busquedas.dlgBuscarReserva;
 import Personas.Clientes.Cliente;
 import Reservas.GestionReserva;
 import Personas.Clientes.GestionCliente;
@@ -14,6 +16,9 @@ import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 import Interfaces.IGui;
 import Vehiculos.GestionVehiculo;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class PnlReservas extends javax.swing.JPanel implements IGui {
     private GestionReserva list;
@@ -21,11 +26,32 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
     private GestionCliente cliente;
     private GestionVehiculo vehiculo;
     
-    public PnlReservas() {
+    public PnlReservas(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo) {
         initComponents();
+        this.cliente = gestionCliente;
+        this.vehiculo = gestionVehiculo;
         list = new GestionReserva();
+        cargarCliente();
+        cargarVehiculos();
     }
     
+    private void cargarCliente() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+        for (Cliente c: cliente.getClientes()) {
+            model.addElement(c.getCedula());
+        }
+        txtCedula.setModel(model);
+        txtCedula.setSelectedIndex(-1);
+    }
+ 
+    private void cargarVehiculos() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+        for (Vehiculo p: vehiculo.getMap().values()) {
+            model.addElement(p.getPlaca());
+        }
+        txtPlaca.setModel(model);
+        txtCedula.setSelectedIndex(-1);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -372,10 +398,8 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
             return;
         }
         try {
-        Cliente clienteId = (Cliente) txtCedula .getSelectedItem();
-        Cliente c = cliente.buscar(clienteId);
-        Vehiculo vehiculoId = (Vehiculo) txtPlaca .getSelectedItem();
-        Vehiculo v = vehiculo.buscar(vehiculoId);
+        Cliente c = (Cliente) txtCedula .getSelectedItem();
+        Vehiculo v = (Vehiculo) txtPlaca .getSelectedItem();
         LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
         LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
 
@@ -403,17 +427,66 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
             UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
             return;
         }
-        
+    try {
+        Cliente c = (Cliente) txtCedula .getSelectedItem();
+        Vehiculo v = (Vehiculo) txtPlaca .getSelectedItem();
+        LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
+        LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
+
+        Reserva r = new Reserva(c, v, inicio, fin);
+
+        if (list.eliminar(r)) {
+            lblEstado.setText("Reserva eliminada correctamente.");
+            clear();
+        }
+    } catch (EliminacionNoPermitidaException ex) {
+        UtilGui.showErrorMessage(this, ex.getMessage(), "Error al eliminar");
+    }
     }
 
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this,"Faltan datos requeridos", "Error");
+            return;
+        }
+        
+    try {
+        Cliente c = (Cliente) txtCedula.getSelectedItem();
+
+        Reserva existe = list.buscar(c);
+        if (existe == null) {
+            lblEstado.setText("No se encontró ninguna reserva para este cliente.");
+            return;
+        }
+
+        Vehiculo vehiculoId = (Vehiculo) txtPlaca.getSelectedItem();
+        Vehiculo nuevoVehiculo = vehiculo.buscar(vehiculoId);
+        existe.setVehiculo(nuevoVehiculo);
+
+        if (list.actualizar(existe)) {
+            lblEstado.setText("Vehículo de la reserva actualizado correctamente.");
+        } else {
+            lblEstado.setText("No se pudo actualizar la reserva.");
+        }
+
+    } catch (ReservaInvalidaException ex) {
+        UtilGui.showErrorMessage(this, ex.getMessage(), "Error al actualizar");
+        lblEstado.setText("Error: " + ex.getMessage());
+    } 
     }
 
     @Override
     public void search() {
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        dlgBuscarReserva frmBusqueda = new dlgBuscarReserva(parentFrame, true);
+        frmBusqueda.setList(list);
+        frmBusqueda.setVisible(true);
 
+        reserva = frmBusqueda.getReserva();
+        if (reserva != null) {
+            showdata();
+        }
     }
 
     @Override
@@ -423,7 +496,10 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
 
     @Override
     public void showdata() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtCedula.setSelectedItem(reserva.getCliente());
+        txtPlaca.setSelectedItem(reserva.getVehiculo());
+        txtFechaInicio.setText(UtilDate.toString(reserva.getFechaInicio()));
+        txtFechaFin.setText(UtilDate.toString(reserva.getFechaFin()));
     }
 
 }

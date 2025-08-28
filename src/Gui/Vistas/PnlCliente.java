@@ -77,6 +77,8 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
         btnBuscar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         pnlContenedor.setBackground(new java.awt.Color(204, 204, 204));
 
         lblCedula.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N

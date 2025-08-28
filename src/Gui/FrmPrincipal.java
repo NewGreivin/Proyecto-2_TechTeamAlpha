@@ -291,7 +291,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 }
     
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        //mostrarPanel(pnlEmpleados);
+        mostrarPanel(pnlEmpleados);
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

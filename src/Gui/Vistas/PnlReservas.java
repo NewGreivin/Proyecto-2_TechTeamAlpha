@@ -36,22 +36,27 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
     }
     
     private void cargarCliente() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel(); 
         for (Cliente c: cliente.getClientes()) {
             model.addElement(c.getCedula());
         }
         txtCedula.setModel(model);
-        txtCedula.setSelectedIndex(-1);
     }
  
     private void cargarVehiculos() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel(); 
         for (Vehiculo p: vehiculo.getMap().values()) {
             model.addElement(p.getPlaca());
         }
         txtPlaca.setModel(model);
-        txtCedula.setSelectedIndex(-1);
     }
+    
+    public void cargarCombos() {
+    txtCedula.removeAllItems();
+    txtPlaca.removeAllItems();
+    cargarCliente();
+    cargarVehiculos();
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,11 +108,8 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         lblFechaFinalizacion.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblFechaFinalizacion.setText("Fecha de Finalizacion:");
 
-        try {
-            txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtFechaFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtFechaFin.setText("");
 
         txtCedula.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -398,8 +400,10 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
             return;
         }
         try {
-        Cliente c = (Cliente) txtCedula .getSelectedItem();
-        Vehiculo v = (Vehiculo) txtPlaca .getSelectedItem();
+        String cedulaSelect = (String) txtCedula.getSelectedItem();
+        Cliente c = cliente.buscar(cedulaSelect);
+        String placaSelect = (String) txtPlaca.getSelectedItem();
+        Vehiculo v = vehiculo.buscar(placaSelect);
         LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
         LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
 
@@ -428,8 +432,10 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
             return;
         }
     try {
-        Cliente c = (Cliente) txtCedula .getSelectedItem();
-        Vehiculo v = (Vehiculo) txtPlaca .getSelectedItem();
+        String cedulaSelect = (String) txtCedula.getSelectedItem();
+        Cliente c = cliente.buscar(cedulaSelect);
+        String placaSelect = (String) txtPlaca.getSelectedItem();
+        Vehiculo v = vehiculo.buscar(placaSelect);
         LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
         LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
 
@@ -452,7 +458,8 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
         }
         
     try {
-        Cliente c = (Cliente) txtCedula.getSelectedItem();
+        String cedulaSelect = (String) txtCedula.getSelectedItem();
+        Cliente c = cliente.buscar(cedulaSelect);
 
         Reserva existe = list.buscar(c);
         if (existe == null) {
@@ -496,8 +503,8 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
 
     @Override
     public void showdata() {
-        txtCedula.setSelectedItem(reserva.getCliente());
-        txtPlaca.setSelectedItem(reserva.getVehiculo());
+        txtCedula.setSelectedItem(reserva.getCliente().getCedula());
+        txtPlaca.setSelectedItem(reserva.getVehiculo().getPlaca());
         txtFechaInicio.setText(UtilDate.toString(reserva.getFechaInicio()));
         txtFechaFin.setText(UtilDate.toString(reserva.getFechaFin()));
     }

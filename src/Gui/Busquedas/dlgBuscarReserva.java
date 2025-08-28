@@ -195,8 +195,20 @@ public class dlgBuscarReserva extends javax.swing.JDialog {
             UtilGui.showErrorMessage(this, "Debe seleccionar una reserva", "Error");
             return;
         }
-        String id = String.valueOf(tblReservas.getValueAt(row,0));
-        reserva = list.buscar(id);
+        String cedula = String.valueOf(tblReservas.getValueAt(row, 0));
+        String placa = String.valueOf(tblReservas.getValueAt(row, 1));
+        String fechaInicio = String.valueOf(tblReservas.getValueAt(row, 2));
+        String fechaFin = String.valueOf(tblReservas.getValueAt(row, 3));
+
+        for (Reserva r : list.getReservasPendientes()) {
+            if (r.getCliente().getCedula().equals(cedula) &&
+             r.getVehiculo().getPlaca().equals(placa) &&
+             UtilDate.toString(r.getFechaInicio()).equals(fechaInicio) &&
+             UtilDate.toString(r.getFechaFin()).equals(fechaFin)) {
+             reserva = r;
+             break;
+        }
+    }
         setVisible(false);
         this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed

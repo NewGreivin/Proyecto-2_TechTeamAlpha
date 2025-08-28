@@ -303,6 +303,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bntClientesActionPerformed
 
     private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
+        pnlReservas.cargarCombos();
         mostrarPanel(pnlReservas);
         
     }//GEN-LAST:event_btnReservasActionPerformed

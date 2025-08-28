@@ -65,10 +65,21 @@ public class GestionReserva implements IGestionDatos<Reserva> {
     
     @Override
     public boolean eliminar(Reserva t) throws EliminacionNoPermitidaException{
-        if (t != null && LocalDate.now().isBefore(t.getFechaInicio())) {
-            return reservasPendientes.remove(t) && reservasOrdenadas.remove(t);
-        }
-        throw new EliminacionNoPermitidaException("No se puede eliminar la reserva ya iniciada o no existente");
+        if (t == null) {
+        throw new EliminacionNoPermitidaException("La reserva no existe.");
+    }
+    if (!LocalDate.now().isBefore(t.getFechaInicio())) { 
+        throw new EliminacionNoPermitidaException("No se puede eliminar una reserva ya iniciada.");
+    }
+
+    boolean eliminadoPendientes = reservasPendientes.remove(t);
+    boolean eliminadoOrdenadas = reservasOrdenadas.remove(t);
+
+    if (!eliminadoPendientes && !eliminadoOrdenadas) {
+        throw new EliminacionNoPermitidaException("La reserva no existe en el sistema.");
+    }
+
+    return true;
     }
     
     @Override

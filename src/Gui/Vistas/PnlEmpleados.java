@@ -412,7 +412,7 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
         LocalDate fecha = UtilDate.toLocalDate(txtFechaNacimiento.getText());
         String telefono = txtTelefono.getText();
         String correo = txtCorreo.getText();
-        String puesto = (String) txtPuesto.getSelectedItem();
+        String puesto = (String) txtPuesto.getSelectedItem().toString();
         double salario = Double.parseDouble(txtSalario.getText().replace(",", "."));
 
         empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto, salario);

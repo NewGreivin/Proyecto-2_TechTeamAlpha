@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class dlgBuscarEmpleado extends javax.swing.JDialog {
     
-   private GestionEmpleado list;
+    private GestionEmpleado list;
     private Empleado empleado;
     
     private DefaultTableModel model;
@@ -37,7 +37,7 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dlgBuscarEmpleado.class.getName());
 
     
-    
+   
     public dlgBuscarEmpleado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -48,8 +48,8 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     
     private void cargarTabla() {
         model.setRowCount(0);
-       Iterable<Empleado> lista = null;
-        for (Empleado e : lista) {
+        Iterable<Empleado> lista = null;
+            for (Empleado e : lista) {
             Object[] row = {
                 e.getCedula(),
                 e.getNombre(),
@@ -189,7 +189,7 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void loadTable() {
-        ArrayList<Empleado> lista = list.getEmpleados();
+       ArrayList<Empleado> lista = list.getEmpleado();
         model.setRowCount(0);
 
         for (Empleado e : lista) {
@@ -205,9 +205,6 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
         }
         
     }     
-
-        
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBLlist;

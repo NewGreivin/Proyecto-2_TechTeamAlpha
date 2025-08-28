@@ -11,6 +11,7 @@ import Personas.Empleados.GestionEmpleado;
 import Utilidades.UtilDate;
 import Utilidades.UtilGui;
 import java.time.LocalDate;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -24,9 +25,19 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     public PnlEmpleados() {
         initComponents();
         list = new GestionEmpleado();
-        
+        showPuesto();
         
     }
+    
+    private void showPuesto(){
+            DefaultComboBoxModel model = new DefaultComboBoxModel(); 
+            for (String puesto:list.getPuesto()) {
+                model.addElement(puesto);
+            }
+            txtPuesto.setModel(model);
+    }
+    
+    
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

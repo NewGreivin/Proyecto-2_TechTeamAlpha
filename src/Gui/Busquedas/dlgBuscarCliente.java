@@ -233,7 +233,7 @@ public class dlgBuscarCliente extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int row =TBLlist.getSelectedRow();
         if (row==-1){
-            UtilGui.showErrorMessage(this, "Debe seleccionar un animal", "Error");
+            UtilGui.showErrorMessage(this, "Debe seleccionar un cliente", "Error");
             return;
         }
         String id=String.valueOf(TBLlist.getValueAt(row,0));

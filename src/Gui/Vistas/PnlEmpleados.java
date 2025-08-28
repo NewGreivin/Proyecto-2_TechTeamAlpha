@@ -3,7 +3,6 @@
  */
 package Gui.Vistas;
 
-import Excepciones.EliminacionNoPermitidaException;
 import Gui.Busquedas.dlgBuscarEmpleado;
 import Interfaces.IGui;
 import Personas.Empleados.Empleado;

@@ -25,7 +25,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private PnlReservas pnlReservas;
     private PnlCliente pnlClientes;
     private PnlVehiculos pnlVehiculos;
-    //private PnlEmpleados pnlEmpleados;
+    private PnlEmpleados pnlEmpleados;
     //private PnlContratos pnlContratos;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPrincipal.class.getName());
@@ -41,7 +41,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pnlClientes = new PnlCliente(gestionCliente);
         pnlVehiculos = new PnlVehiculos(gestionVehiculo);
         pnlReservas = new PnlReservas(gestionCliente, gestionVehiculo, gestionReserva);
-        //pnlEmpleados = new PnlEmpleados(gestionEmpleado);
+        pnlEmpleados = new PnlEmpleados(gestionEmpleado);
         //pnlContratos = new PnlContratos(gestionEmpleado, gestionCliente, gestionVehiculo, gestionContrato);
     }
 

@@ -21,9 +21,9 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     private GestionEmpleado list;
     private Empleado empleado;
 
-    public PnlEmpleados() {
+    public PnlEmpleados(GestionEmpleado gestionEmpleado) {
+        list = gestionEmpleado;
         initComponents();
-        list = new GestionEmpleado();
         showPuesto();
         
     }

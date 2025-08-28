@@ -189,8 +189,8 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void loadTable() {
-        ArrayList<Empleado> lista = list.getEmpleados(); // suponiendo que list devuelve un ArrayList
-        model.setRowCount(0); // limpia la tabla
+        ArrayList<Empleado> lista = list.getEmpleados();
+        model.setRowCount(0);
 
         for (Empleado e : lista) {
             Object[] data = {

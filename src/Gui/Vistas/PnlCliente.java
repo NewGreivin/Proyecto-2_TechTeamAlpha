@@ -27,13 +27,11 @@ public class PnlCliente extends javax.swing.JPanel implements IGui {
     private GestionCliente list;
     private Cliente cliente;
 
-    /**
-     * Creates new form PnlCliente
-     */
-    public PnlCliente() {
+
+    public PnlCliente(GestionCliente gestionCliente) {
+        list = gestionCliente;
         initComponents();
         showTipo_Licencia();
-        list = new GestionCliente();
     }
 
     private void showTipo_Licencia() {

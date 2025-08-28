@@ -26,11 +26,11 @@ public class PnlReservas extends javax.swing.JPanel implements IGui {
     private GestionCliente cliente;
     private GestionVehiculo vehiculo;
     
-    public PnlReservas(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo) {
+    public PnlReservas(GestionCliente gestionCliente, GestionVehiculo gestionVehiculo, GestionReserva gestionReserva) {
         initComponents();
         this.cliente = gestionCliente;
         this.vehiculo = gestionVehiculo;
-        list = new GestionReserva();
+        this.list = gestionReserva;
         cargarCliente();
         cargarVehiculos();
     }

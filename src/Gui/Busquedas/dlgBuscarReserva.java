@@ -19,7 +19,7 @@ public class dlgBuscarReserva extends javax.swing.JDialog {
     private TableRowSorter<DefaultTableModel> sorter;
     private RowFilter<DefaultTableModel, Object> rowFilter;
 
-    public void setGestor(GestionReserva list) {
+    public void setList(GestionReserva list) {
         this.list = list;
         loadTable();
     }

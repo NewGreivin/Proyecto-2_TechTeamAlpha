@@ -432,8 +432,9 @@ public void save() {
     String telefono = txtTelefono.getText();
     String correo = txtCorreo.getText();
     String puesto = (String) txtPuesto.getSelectedItem();
-    
-    empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto);
+    double salario = Double.parseDouble(txtSalario.getText());
+
+    empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto, salario);
 
     
 

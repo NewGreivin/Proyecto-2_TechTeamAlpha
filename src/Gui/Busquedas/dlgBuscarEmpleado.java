@@ -48,23 +48,27 @@ public class dlgBuscarEmpleado extends javax.swing.JDialog {
     }
     
     private void loadTable() {
-        model.setRowCount(0);
-        Iterable<Empleado> lista = null;
-            for (Empleado e : lista) {
-            Object[] row = {
-                e.getCedula(),
-                e.getNombre(),
-                e.getFechaNacimiento(),
-                e.getTelefono(),
-                e.getCorreo(),
-                e.getPuesto(),
-                e.getPuesto(),
-                e.getSalario()
-            };
-            model.addRow(row);
-            }
+    model.setRowCount(0);
 
+    if (list == null) {
+        return; // no hay nada que cargar
     }
+
+    ArrayList<Empleado> lista = list.getEmpleado();
+    for (Empleado empleado : lista) {
+        Object[] data = {
+            empleado.getCedula(),
+            empleado.getNombre(),
+            empleado.getFechaNacimiento(),
+            empleado.getTelefono(),
+            empleado.getCorreo(),
+            empleado.getPuesto(),
+            empleado.getSalario()
+        };
+        model.addRow(data);
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.

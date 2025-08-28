@@ -15,9 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-
 public class PnlEmpleados extends javax.swing.JPanel implements IGui {
-    
+
     private GestionEmpleado list;
     private Empleado empleado;
 
@@ -25,19 +24,18 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
         list = gestionEmpleado;
         initComponents();
         showPuesto();
-        
+
     }
-    
-    private void showPuesto(){
-            DefaultComboBoxModel model = new DefaultComboBoxModel(); 
-            for (String puesto:list.getPuesto()) {
-                model.addElement(puesto);
-            }
-            txtPuesto.setModel(model);
+
+    private void showPuesto() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (String puesto : list.getPuesto()) {
+            model.addElement(puesto);
+        }
+        txtPuesto.setModel(model);
     }
-    
-    
-  @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -355,8 +353,8 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        clear();  
-        
+        clear();
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -370,8 +368,8 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         search();
     }//GEN-LAST:event_btnBuscarActionPerformed
-  
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
@@ -401,35 +399,32 @@ public class PnlEmpleados extends javax.swing.JPanel implements IGui {
     private javax.swing.JFormattedTextField txtSalario;
     private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-    
-    
-   @Override
-public void save() {
-    if (!validateRequiere()) {
-        UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
-        return;
+
+    @Override
+    public void save() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+            return;
+        }
+
+        String cedula = txtCedula.getText();
+        String nombre = txtNombre.getText();
+        LocalDate fecha = UtilDate.toLocalDate(txtFechaNacimiento.getText());
+        String telefono = txtTelefono.getText();
+        String correo = txtCorreo.getText();
+        String puesto = (String) txtPuesto.getSelectedItem();
+        double salario = Double.parseDouble(txtSalario.getText());
+
+        empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto, salario);
+
+        if (!list.agregar(empleado)) {
+            JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+            return;
+        }
+
+        UtilGui.showMessage(this, "Registro agregado " + empleado.getNombre(), "Agregado");
+        clear();
     }
-
-    String cedula = txtCedula.getText();
-    String nombre = txtNombre.getText();
-    LocalDate fecha = UtilDate.toLocalDate(txtFechaNacimiento.getText());
-    String telefono = txtTelefono.getText();
-    String correo = txtCorreo.getText();
-    String puesto = (String) txtPuesto.getSelectedItem();
-    double salario = Double.parseDouble(txtSalario.getText());
-
-    empleado = new Empleado(cedula, nombre, fecha, telefono, correo, puesto, salario);
-
-    
-
-    if (!list.agregar(empleado)) {
-        JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
-        return;
-    }
-
-    UtilGui.showMessage(this, "Registro agregado " + empleado.getNombre(), "Agregado");
-    clear();
-}
 
     @Override
     public boolean validateRequiere() {
@@ -469,16 +464,24 @@ public void save() {
 
     @Override
     public void update() {
+        empleado.setTelefono(txtTelefono.getText());
+        empleado.setCorreo(txtCorreo.getText());
+        empleado.setPuesto((String) txtPuesto.getSelectedItem());
+        
         if (!validateRequiere()) {
             UtilGui.showErrorMessage(this, "Faltan datos", "Error");
             return;
         }
 
-    
-        empleado.setTelefono(txtTelefono.getText());
-        empleado.setCorreo(txtCorreo.getText());
-        empleado.setPuesto((String) txtPuesto.getSelectedItem()); 
-}
+        String newtelefono = txtTelefono.getText();
+        empleado.setTelefono(newtelefono);
+
+        String newcorreo = txtCorreo.getText();
+        empleado.setCorreo(newcorreo);
+
+        String puesto = (String) txtPuesto.getSelectedItem();
+        empleado.setPuesto(puesto);
+    }
 
     @Override
     public void search() {
@@ -495,17 +498,18 @@ public void save() {
 
     @Override
     public void showdata() {
-        if (empleado == null) return;
+        if (empleado == null) {
+            return;
+        }
 
         txtCedula.setText(empleado.getCedula());
         txtNombre.setText(empleado.getNombre());
         txtFechaNacimiento.setText(UtilDate.toString(empleado.getFechaNacimiento()));
         txtTelefono.setText(empleado.getTelefono());
         txtCorreo.setText(empleado.getCorreo());
-        txtPuesto.setSelectedItem(empleado.getPuesto()); 
+        txtPuesto.setSelectedItem(empleado.getPuesto());
         txtSalario.setText(String.valueOf(empleado.getSalario()));
 
     }
-
 
 }

@@ -124,7 +124,7 @@
                                   <Component id="lblFechaInicio" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="lblInfoFecha" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                                       </Group>
@@ -272,9 +272,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblInfoFecha">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Requiere formato: dd/MM/yyyy"/>
                   </Properties>
                 </Component>
@@ -328,9 +325,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblInfoFecha1">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Requiere formato: dd/MM/yyyy"/>
                   </Properties>
                 </Component>
@@ -372,9 +366,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblInfoFecha2">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Requiere formato: 0.00"/>
                   </Properties>
                 </Component>
@@ -390,9 +381,6 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="18" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="0.00"/>
                   </Properties>

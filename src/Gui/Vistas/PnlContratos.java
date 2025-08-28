@@ -466,7 +466,8 @@ public class PnlContratos extends javax.swing.JPanel implements IGui {
         Vehiculo v = vehiculo.buscar(placaSelect);
         LocalDate inicio = UtilDate.toLocalDate(txtFechaInicio.getText());
         LocalDate fin = UtilDate.toLocalDate(txtFechaFin.getText());
-        double tarifaDiaria = Double.parseDouble(txtMonto.getText());
+        double tarifaDiaria = Double.parseDouble(txtMonto.getText().replace(",", "."));
+
         
         String numContrato = "C-" + System.currentTimeMillis();
 

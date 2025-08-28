@@ -4,7 +4,7 @@
 package Gui;
 
 import Contratos.GestionContrato;
-import GUI.Vistas.PnlClientes;
+import Gui.Vistas.PnlCliente;
 import Gui.Vistas.PnlContratos;
 import Gui.Vistas.PnlEmpleados;
 import Gui.Vistas.PnlReservas;
@@ -23,7 +23,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     //private GestionContrato gestionContrato;
 
     private PnlReservas pnlReservas;
-    private PnlClientes pnlClientes;
+    private PnlCliente pnlClientes;
     private PnlVehiculos pnlVehiculos;
     //private PnlEmpleados pnlEmpleados;
     //private PnlContratos pnlContratos;
@@ -38,7 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         gestionEmpleado = new GestionEmpleado();
         //gestionContrato = new GestionContrato();
 
-        pnlClientes = new PnlClientes(gestionCliente);
+        pnlClientes = new PnlCliente(gestionCliente);
         pnlVehiculos = new PnlVehiculos(gestionVehiculo);
         pnlReservas = new PnlReservas(gestionCliente, gestionVehiculo, gestionReserva);
         //pnlEmpleados = new PnlEmpleados(gestionEmpleado);

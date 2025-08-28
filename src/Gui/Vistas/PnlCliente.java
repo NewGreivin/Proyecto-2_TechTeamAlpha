@@ -5,6 +5,7 @@
 package Gui.Vistas;
 
 import Gui.Busquedas.dlgBuscarCliente;
+import Interfaces.IGui;
 import Personas.Clientes.Cliente;
 import Personas.Clientes.GestionCliente;
 import Personas.Clientes.LicenciasEnum;
@@ -20,9 +21,11 @@ import javax.swing.SwingUtilities;
  *
  * @author Ricardo Chaves
  */
-public class PnlCliente extends javax.swing.JPanel {
+public class PnlCliente extends javax.swing.JPanel implements IGui {
+
     private GestionCliente list;
     private Cliente cliente;
+
     /**
      * Creates new form PnlCliente
      */
@@ -31,102 +34,15 @@ public class PnlCliente extends javax.swing.JPanel {
         showTipo_Licencia();
         list = new GestionCliente();
     }
-    
-        private void showTipo_Licencia(){
-            DefaultComboBoxModel model = new DefaultComboBoxModel(); 
-            for (LicenciasEnum licencia:LicenciasEnum.values()) {
-                model.addElement(licencia);
-            }
-            txtLicencia.setModel(model);
-        }
-        
-        private void clear(){
-            txtCedula.setText("");
-            txtNombre.setText("");
-            txtFechaNacimiento.setText("");
-            txtTelefono.setText("");
-            txtCorreo.setText("");
-            txtLicencia.setSelectedIndex(-1);
-        }
-        
-        private boolean validateRequire(){
-            return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtLicencia);
-        }
-        
-        private void save(){
-            if(!validateRequire()){
-                UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
-                return;
-            }
-            String id=txtCedula.getText();
-            String name=txtNombre.getText();
-            LocalDate date=UtilDate.toLocalDate(txtFechaNacimiento.getText());
-            String telefono = txtTelefono.getText();
-            String correo = txtCorreo.getText();
-            LicenciasEnum licencia=(LicenciasEnum)txtLicencia.getSelectedItem();
 
-            cliente=new Cliente(id, name, date, telefono, correo, licencia);
+    private void showTipo_Licencia() {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for (LicenciasEnum licencia : LicenciasEnum.values()) {
+            model.addElement(licencia);
+        }
+        txtLicencia.setModel(model);
+    }
 
-            if(!list.agregar(cliente)){
-                JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
-                return;
-            }
-
-            UtilGui.showMessage(this, "Registro agregado "+ cliente.getNombre(),"Agregado");
-            clear();
-
-        }
-        
-        private void update(){
-            if(!validateRequire()){
-                UtilGui.showErrorMessage(this, "Faltan datos", "Error");
-                return;
-            }
-            
-            String newtelefono = txtTelefono.getText();
-            cliente.setTelefono(newtelefono);
-            
-            String newcorreo = txtCorreo.getText();
-            cliente.setCorreo(newcorreo);
-            
-            LicenciasEnum licencia = (LicenciasEnum)txtLicencia.getSelectedItem();
-            cliente.setLicencia(licencia); 
-        }
-        
-        private void delete(){
-            if(cliente==null){
-                UtilGui.showErrorMessage(this, "Debe especificar un animal", "Error");
-                return;
-            }
-            if(!list.eliminar(cliente)){
-                JOptionPane.showMessageDialog(this, "No se elimino el registro");
-                return;
-            }
-            clear();
-        }
-        
-        private void showData(){
-            if(cliente == null ) return;
-
-            txtCedula.setText(cliente.getCedula());
-            txtNombre.setText(cliente.getNombre());
-            txtFechaNacimiento.setText(UtilDate.toString(cliente.getFechaNacimiento()));
-            txtTelefono.setText(cliente.getTelefono());
-            txtCorreo.setText(cliente.getCorreo());
-            txtLicencia.setSelectedItem(cliente.getLicencia());
-        }
-        
-        private void search()  {
-            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            dlgBuscarCliente frmSearch = new dlgBuscarCliente(parentFrame, true);
-            frmSearch.setList(list);
-            frmSearch.setVisible(true);
-            
-            cliente=frmSearch.getCliente();
-            if(cliente!=null){
-                showData();
-            }
-        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -479,4 +395,100 @@ public class PnlCliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JFormattedTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void save() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this, "Faltan datos requeridos", "Error");
+            return;
+        }
+        String id = txtCedula.getText();
+        String name = txtNombre.getText();
+        LocalDate date = UtilDate.toLocalDate(txtFechaNacimiento.getText());
+        String telefono = txtTelefono.getText();
+        String correo = txtCorreo.getText();
+        LicenciasEnum licencia = (LicenciasEnum) txtLicencia.getSelectedItem();
+
+        cliente = new Cliente(id, name, date, telefono, correo, licencia);
+
+        if (!list.agregar(cliente)) {
+            JOptionPane.showInternalMessageDialog(this, "No se agrego el registro");
+            return;
+        }
+
+        UtilGui.showMessage(this, "Registro agregado " + cliente.getNombre(), "Agregado");
+        clear();
+    }
+
+    @Override
+    public boolean validateRequiere() {
+        return UtilGui.validateRequiere(txtCedula, txtNombre, txtFechaNacimiento, txtTelefono, txtCorreo, txtLicencia);
+    }
+
+    @Override
+    public void clear() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtFechaNacimiento.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtLicencia.setSelectedIndex(-1);
+    }
+
+    @Override
+    public void delete() {
+        if (cliente == null) {
+            UtilGui.showErrorMessage(this, "Debe especificar un animal", "Error");
+            return;
+        }
+        if (!list.eliminar(cliente)) {
+            JOptionPane.showMessageDialog(this, "No se elimino el registro");
+            return;
+        }
+        clear();
+    }
+
+    @Override
+    public void update() {
+        if (!validateRequiere()) {
+            UtilGui.showErrorMessage(this, "Faltan datos", "Error");
+            return;
+        }
+
+        String newtelefono = txtTelefono.getText();
+        cliente.setTelefono(newtelefono);
+
+        String newcorreo = txtCorreo.getText();
+        cliente.setCorreo(newcorreo);
+
+        LicenciasEnum licencia = (LicenciasEnum) txtLicencia.getSelectedItem();
+        cliente.setLicencia(licencia);
+    }
+
+    @Override
+    public void search() {
+        JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        dlgBuscarCliente frmSearch = new dlgBuscarCliente(parentFrame, true);
+        frmSearch.setList(list);
+        frmSearch.setVisible(true);
+
+        cliente = frmSearch.getCliente();
+        if (cliente != null) {
+            showdata();
+        }
+    }
+
+    @Override
+    public void showdata() {
+        if (cliente == null) {
+            return;
+        }
+
+        txtCedula.setText(cliente.getCedula());
+        txtNombre.setText(cliente.getNombre());
+        txtFechaNacimiento.setText(UtilDate.toString(cliente.getFechaNacimiento()));
+        txtTelefono.setText(cliente.getTelefono());
+        txtCorreo.setText(cliente.getCorreo());
+        txtLicencia.setSelectedItem(cliente.getLicencia());
+    }
 }
